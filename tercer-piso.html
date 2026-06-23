@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>3er Piso — Colegio San Francisco de Asís</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #0a0a0f; color: #fff;
+      height: 100dvh; display: flex; flex-direction: column; overflow: hidden;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: #1565C0; color: #fff;
+      padding: 10px 18px;
+      display: flex; align-items: center; gap: 14px;
+      box-shadow: 0 2px 12px rgba(0,0,0,.6); z-index: 30; flex-shrink: 0;
+    }
+    .brand .title { font-size: 17px; font-weight: 700; }
+    .brand .sub   { font-size: 11px; opacity: .78; margin-top: 1px; }
+
+    /* Search */
+    .search-wrap { position: relative; flex: 1; max-width: 420px; margin-left: auto; }
+    .s-icon { position: absolute; left: 11px; top: 50%; transform: translateY(-50%); width: 16px; height: 16px; pointer-events: none; opacity: .65; }
+    #search {
+      width: 100%; padding: 9px 14px 9px 35px;
+      border-radius: 22px; border: none; font-size: 14px; outline: none;
+      background: rgba(255,255,255,.18); color: #fff; transition: background .2s;
+    }
+    #search::placeholder { color: rgba(255,255,255,.55); }
+    #search:focus { background: #fff; color: #212121; }
+    #sugs {
+      display: none; position: absolute; top: calc(100% + 6px); left: 0; right: 0;
+      background: #fff; border-radius: 12px; box-shadow: 0 6px 24px rgba(0,0,0,.4);
+      overflow: hidden; z-index: 200;
+    }
+    #sugs.open { display: block; }
+    .si { padding: 11px 15px; cursor: pointer; display: flex; align-items: center; gap: 10px; font-size: 13.5px; color: #222; border-bottom: 1px solid #f0f0f0; }
+    .si:last-child { border-bottom: none; }
+    .si:hover { background: #E3F2FD; }
+    .si-badge { background: #1565C0; color: #fff; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 10px; min-width: 32px; text-align: center; }
+
+    /* ── FLOOR BAR ── */
+    .floor-bar {
+      background: rgba(15,15,25,.85); backdrop-filter: blur(10px);
+      padding: 7px 16px; display: flex; gap: 8px; align-items: center; flex-shrink: 0;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .floor-bar span { font-size: 12px; color: rgba(255,255,255,.5); margin-right: 2px; }
+    .fbtn {
+      padding: 4px 15px; border-radius: 18px; border: 2px solid rgba(255,255,255,.3);
+      color: rgba(255,255,255,.7); font-weight: 600; font-size: 12px; cursor: pointer;
+      background: transparent; text-decoration: none; display: inline-block; line-height: 1.4;
+    }
+    .fbtn.active { background: #1565C0; border-color: #1565C0; color: #fff; }
+    .fbtn:hover:not(.active):not([disabled]) { background: rgba(255,255,255,.12); }
+    .fbtn[disabled] { opacity: .3; cursor: default; }
+
+    /* ── MAIN LAYOUT ── */
+    .main { flex: 1; display: flex; overflow: hidden; min-height: 0; }
+
+    /* ── PHOTO VIEWER ── */
+    #viewer {
+      flex: 1; position: relative; overflow: hidden; background: #000;
+    }
+    #photo-img {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover;
+      transition: opacity .3s ease;
+    }
+    #photo-img.fade { opacity: 0; }
+
+    /* ── LOCATION CHIP ── */
+    #loc-chip {
+      position: absolute; top: 16px; left: 50%; transform: translateX(-50%);
+      background: rgba(0,0,0,.7); backdrop-filter: blur(10px);
+      color: #fff; padding: 8px 20px; border-radius: 24px;
+      font-size: 13.5px; font-weight: 600; white-space: nowrap;
+      pointer-events: none; z-index: 10;
+      box-shadow: 0 2px 12px rgba(0,0,0,.4);
+      display: flex; align-items: center; gap: 8px;
+      max-width: calc(100% - 40px); overflow: hidden; text-overflow: ellipsis;
+    }
+
+    /* ── ROUTE PROGRESS ── */
+    #route-strip {
+      position: absolute; top: 62px; left: 50%; transform: translateX(-50%);
+      background: rgba(21,101,192,.88); backdrop-filter: blur(10px);
+      color: #fff; padding: 6px 16px; border-radius: 14px;
+      font-size: 11.5px; font-weight: 600;
+      display: none; align-items: center; gap: 10px;
+      z-index: 10; white-space: nowrap;
+      box-shadow: 0 2px 10px rgba(0,0,0,.3);
+    }
+    #route-strip.on { display: flex; }
+    #progress-bar-wrap {
+      width: 120px; height: 5px; background: rgba(255,255,255,.25); border-radius: 3px; overflow: hidden;
+    }
+    #progress-bar-fill { height: 100%; background: #fff; border-radius: 3px; transition: width .4s ease; }
+
+    /* ── NAV BUTTONS ── */
+    .nav-btn {
+      position: absolute; z-index: 15;
+      background: rgba(0,0,0,.6); backdrop-filter: blur(8px);
+      border: 1.5px solid rgba(255,255,255,.28); color: #fff;
+      border-radius: 14px; cursor: pointer;
+      display: flex; flex-direction: column; align-items: center; gap: 4px;
+      padding: 12px 18px;
+      transition: background .15s, border-color .15s;
+      font-size: 11px; font-weight: 600; letter-spacing: .3px;
+      opacity: 0; pointer-events: none;
+    }
+    .nav-btn.on { opacity: 1; pointer-events: all; }
+    .nav-btn:hover { background: rgba(21,101,192,.75); border-color: rgba(255,255,255,.6); }
+    .nav-btn:active { transform: scale(.95) !important; }
+    .nav-btn svg { width: 22px; height: 22px; }
+
+    #btn-fwd  { bottom: 90px; left: 50%; transform: translateX(-50%); }
+    #btn-fwd:hover  { transform: translateX(-50%) !important; }
+    #btn-back { bottom: 18px; left: 50%; transform: translateX(-50%); padding: 9px 16px; }
+    #btn-back:hover { transform: translateX(-50%) !important; }
+    #btn-right { right: 20px; top: 50%; transform: translateY(-50%); }
+    #btn-right:hover { transform: translateY(-50%) !important; }
+    #btn-left  { left: 20px;  top: 50%; transform: translateY(-50%); }
+    #btn-left:hover  { transform: translateY(-50%) !important; }
+
+    /* Autoplay */
+    #btn-auto {
+      position: absolute; bottom: 18px; right: 18px; z-index: 15;
+      background: rgba(0,0,0,.6); backdrop-filter: blur(8px);
+      border: 1.5px solid rgba(255,255,255,.28); color: #fff;
+      border-radius: 10px; cursor: pointer; padding: 8px 14px;
+      font-size: 12px; font-weight: 600;
+      transition: background .15s;
+    }
+    #btn-auto:hover { background: rgba(21,101,192,.75); }
+    #btn-auto.playing { border-color: #E53935; }
+
+    /* ── SIDEBAR ── */
+    .sidebar {
+      width: 285px; background: #12121e;
+      border-left: 1px solid rgba(255,255,255,.07);
+      display: flex; flex-direction: column; overflow: hidden; flex-shrink: 0;
+    }
+    .sb-head {
+      background: #1565C0; color: #fff;
+      padding: 12px 16px; font-weight: 600; font-size: 14px; flex-shrink: 0;
+    }
+    .sb-body { flex: 1; overflow-y: auto; padding: 12px; }
+    .empty { color: rgba(255,255,255,.35); font-size: 13px; text-align: center; margin-top: 36px; line-height: 1.7; }
+
+    .rstep {
+      display: flex; gap: 10px; margin-bottom: 10px; align-items: flex-start;
+      padding: 10px 12px; border-radius: 10px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.07);
+      cursor: pointer; transition: background .15s, border-color .15s;
+    }
+    .rstep:hover { background: rgba(255,255,255,.09); }
+    .rstep.active { background: rgba(21,101,192,.35); border-color: rgba(21,101,192,.7); }
+    .rsnum {
+      width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0;
+      background: rgba(255,255,255,.12); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px;
+    }
+    .rsnum.s { background: #43A047; }
+    .rsnum.d { background: #E53935; }
+    .rsbody { font-size: 12px; line-height: 1.45; color: rgba(255,255,255,.7); padding-top: 3px; }
+    .rsbody strong { color: #fff; display: block; font-size: 12.5px; margin-bottom: 2px; }
+
+    /* Desc chip at bottom of photo */
+    #desc-chip {
+      position: absolute; bottom: 70px; left: 50%; transform: translateX(-50%);
+      background: rgba(0,0,0,.65); backdrop-filter: blur(8px);
+      color: rgba(255,255,255,.8); padding: 6px 16px; border-radius: 12px;
+      font-size: 12px; white-space: nowrap; pointer-events: none; z-index: 10;
+      max-width: calc(100% - 200px); overflow: hidden; text-overflow: ellipsis;
+      opacity: 0; transition: opacity .3s;
+    }
+    #desc-chip.show { opacity: 1; }
+
+    @media (max-width: 768px) {
+      .sidebar { display: none; }
+      #btn-right, #btn-left { top: auto; bottom: 100px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <svg width="32" height="32" viewBox="0 0 32 32">
+    <circle cx="16" cy="16" r="16" fill="rgba(255,255,255,.15)"/>
+    <text x="16" y="22" text-anchor="middle" font-size="17" fill="#fff">📍</text>
+  </svg>
+  <div class="brand">
+    <div class="title">San Francisco de Asís</div>
+    <div class="sub">Villacolombia · Cali — Tercer Piso · Vista Real</div>
+  </div>
+  <div class="search-wrap">
+    <svg class="s-icon" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5">
+      <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
+    </svg>
+    <input id="search" type="text" placeholder="Buscar salón (311, 304, baños…)" autocomplete="off" spellcheck="false"/>
+    <div id="sugs"></div>
+  </div>
+</header>
+
+<div class="floor-bar">
+  <span>Piso:</span>
+  <a href="index.html" class="fbtn">1°</a>
+  <button class="fbtn" disabled>2°</button>
+  <button class="fbtn active">3°</button>
+</div>
+
+<div class="main">
+  <div id="viewer">
+    <img id="photo-img" src="fotos-3/_DSC0527.JPG" alt=""/>
+
+    <!-- chips -->
+    <div id="loc-chip"><span id="loc-icon">📍</span><span id="loc-text">Cargando…</span></div>
+    <div id="route-strip">
+      <span id="route-label">→ Destino</span>
+      <div id="progress-bar-wrap"><div id="progress-bar-fill" style="width:0%"></div></div>
+      <span id="route-pct">0%</span>
+    </div>
+    <div id="desc-chip"></div>
+
+    <!-- nav -->
+    <button id="btn-fwd"   class="nav-btn" onclick="go('forward')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="18,15 12,9 6,15"/></svg>
+      <span id="lbl-fwd">Avanzar</span>
+    </button>
+    <button id="btn-back"  class="nav-btn" onclick="go('back')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6,9 12,15 18,9"/></svg>
+      <span id="lbl-back">Regresar</span>
+    </button>
+    <button id="btn-right" class="nav-btn" onclick="go('right')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="9,6 15,12 9,18"/></svg>
+      <span id="lbl-right">Entrar</span>
+    </button>
+    <button id="btn-left"  class="nav-btn" onclick="go('left')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15,6 9,12 15,18"/></svg>
+      <span id="lbl-left">Salir</span>
+    </button>
+
+    <button id="btn-auto" onclick="toggleAuto()">▶ Auto</button>
+  </div>
+
+  <div class="sidebar">
+    <div class="sb-head">🗺️ Ruta paso a paso</div>
+    <div class="sb-body" id="sb-body">
+      <p class="empty">Busca un salón arriba para ver cómo llegar desde las escaleras de entrada.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════
+// PHOTO GRAPH
+// Each node: file, label, desc, icon,
+//   forward/back/right/left → node id
+//   *Label → button label text
+//   room → searchable room id (if this is the destination)
+//   isRoom → true when inside a room
+// ═══════════════════════════════════════════════════════
+const G = {
+
+  // ── HALLWAY SPINE (escaleras entrada → escaleras amarillas) ──
+
+  h_start: {
+    file:'_DSC0527.JPG', icon:'🪜',
+    label:'Escaleras — Entrada 3° Piso',
+    desc:'Llegas al tercer piso. Salón 311 a tu derecha.',
+    forward:'h_2', forwardLabel:'Avanzar por el pasillo',
+    back:null,
+    right:'s311_door', rightLabel:'→ Salón 311',
+    left:null,
+    room:'escal_entrada',
+  },
+  h_2: {
+    file:'_DSC0528.JPG', icon:'🚶',
+    label:'Pasillo 3° Piso — Tramo 1',
+    desc:'Pasillo principal. Salones a tu derecha.',
+    forward:'h_3', forwardLabel:'Continuar',
+    back:'h_start', backLabel:'← Escaleras entrada',
+    right:null, left:null, room:null,
+  },
+  h_3: {
+    file:'_DSC0530.JPG', icon:'🚶',
+    label:'Pasillo — Zona de Descanso',
+    desc:'Bancas de descanso y extintor de incendios.',
+    forward:'h_4', forwardLabel:'Continuar',
+    back:'h_2', backLabel:'← Regresar',
+    right:null, left:null, room:null,
+  },
+  h_4: {
+    file:'_DSC0531.JPG', icon:'🚶',
+    label:'Pasillo — Salón 309',
+    desc:'Salón 309 a tu derecha.',
+    forward:'h_5', forwardLabel:'Continuar',
+    back:'h_3', backLabel:'← Regresar',
+    right:'s309_a', rightLabel:'→ Salón 309',
+    left:null, room:null,
+  },
+  h_5: {
+    file:'_DSC0538.JPG', icon:'🚶',
+    label:'Pasillo — Salón 308',
+    desc:'Salón 308 a tu derecha. Continúa hacia la sala de informática.',
+    forward:'h_6', forwardLabel:'Continuar',
+    back:'h_4', backLabel:'← Regresar',
+    right:'s308_a', rightLabel:'→ Salón 308',
+    left:null, room:null,
+  },
+  h_6: {
+    file:'_DSC0563.JPG', icon:'🚶',
+    label:'Pasillo — Sala de Informática / Salón 310',
+    desc:'Sala de Informática y Salón 310 a tu derecha.',
+    forward:'h_7', forwardLabel:'Hacia el ascensor',
+    back:'h_5', backLabel:'← Regresar',
+    right:'comp1_a', rightLabel:'→ Sala de Informática',
+    left:null, room:null,
+  },
+  h_7: {
+    file:'_DSC0564.JPG', icon:'🚶',
+    label:'Pasillo — Ascensor ♿',
+    desc:'Balcón abierto. Ascensor accesible a tu izquierda.',
+    forward:'h_8', forwardLabel:'Hacia los baños',
+    back:'h_6', backLabel:'← Regresar',
+    right:null,
+    left:'ascensor_node', leftLabel:'← Ascensor ♿',
+    room:null,
+  },
+  h_8: {
+    file:'_DSC0565.JPG', icon:'🚶',
+    label:'Pasillo — Zona de Baños',
+    desc:'Baños del tercer piso al frente.',
+    forward:'h_9', forwardLabel:'Hacia los baños',
+    back:'h_7', backLabel:'← Regresar',
+    right:null, left:null, room:null,
+  },
+  h_9: {
+    file:'_DSC0566.JPG', icon:'🚻',
+    label:'Pasillo — Entrada Baños',
+    desc:'Baños de Damas a la izquierda.',
+    forward:'h_10', forwardLabel:'Continuar por el pasillo',
+    back:'h_8', backLabel:'← Regresar',
+    right:null,
+    left:'bath_inside', leftLabel:'← Baños',
+    room:'banos',
+  },
+  h_10: {
+    file:'_DSC0591.JPG', icon:'🚶',
+    label:'Pasillo — Segunda Sección',
+    desc:'Segunda mitad del pasillo. Salones 301–307 adelante.',
+    forward:'h_11', forwardLabel:'Continuar',
+    back:'h_9', backLabel:'← Regresar',
+    right:null, left:null, room:null,
+  },
+  h_11: {
+    file:'_DSC0605.JPG', icon:'🚶',
+    label:'Pasillo — Salones 304–306',
+    desc:'Salones 304 a 306 a tu derecha. Barandas amarillas visibles.',
+    forward:'h_12', forwardLabel:'Hacia escaleras de emergencia',
+    back:'h_10', backLabel:'← Regresar',
+    right:'s304_door', rightLabel:'→ Salón 304',
+    left:null, room:null,
+  },
+  h_12: {
+    file:'_DSC0630.JPG', icon:'🚶',
+    label:'Pasillo — Final del Piso',
+    desc:'Final del tercer piso. Escaleras de emergencia al frente.',
+    forward:'h_end', forwardLabel:'Escaleras de emergencia',
+    back:'h_11', backLabel:'← Regresar',
+    right:null, left:null, room:null,
+  },
+  h_end: {
+    file:'_DSC0636.JPG', icon:'🪜',
+    label:'Escaleras Amarillas — Salida de Emergencia',
+    desc:'Escaleras amarillas. Fin del tercer piso.',
+    forward:null,
+    back:'h_12', backLabel:'← Regresar al pasillo',
+    right:null, left:null,
+    room:'escal_amarilla',
+  },
+
+  // ── SALÓN 311 ──
+  s311_door: {
+    file:'_DSC0526.JPG', icon:'🏫',
+    label:'Salón 311 — Puerta',
+    desc:'Entrada al Salón 311. Toca Avanzar para entrar.',
+    forward:'s311_a', forwardLabel:'Entrar al Salón 311',
+    back:'h_start', backLabel:'← Volver al pasillo',
+    right:null, left:null,
+    room:'salon_311', isRoom:true,
+  },
+  s311_a: {
+    file:'_DSC0535.JPG', icon:'🏫',
+    label:'Salón 311 — Interior',
+    desc:'Tablero blanco y televisor. Salón con buena iluminación.',
+    forward:'s311_b', forwardLabel:'Ver más del salón',
+    back:'s311_door', backLabel:'← Volver a la puerta',
+    right:null, left:null,
+    room:'salon_311', isRoom:true,
+  },
+  s311_b: {
+    file:'_DSC0536.JPG', icon:'🏫',
+    label:'Salón 311 — Ventanas',
+    desc:'Vista interior hacia las ventanas del Salón 311.',
+    forward:null,
+    back:'s311_a', backLabel:'← Volver',
+    right:null, left:null,
+    room:'salon_311', isRoom:true,
+  },
+
+  // ── SALÓN 309 ──
+  s309_a: {
+    file:'_DSC0532.JPG', icon:'🏫',
+    label:'Salón 309 — Interior',
+    desc:'Interior del Salón 309.',
+    forward:'s309_b', forwardLabel:'Ver más del salón',
+    back:'h_4', backLabel:'← Volver al pasillo',
+    right:null, left:null,
+    room:'salon_309', isRoom:true,
+  },
+  s309_b: {
+    file:'_DSC0541.JPG', icon:'🏫',
+    label:'Salón 309 — Pared Frontal',
+    desc:'Tablero del Salón 309. Letrero "BIENVENIDOS".',
+    forward:null,
+    back:'s309_a', backLabel:'← Volver',
+    right:null, left:null,
+    room:'salon_309', isRoom:true,
+  },
+
+  // ── SALÓN 308 ──
+  s308_a: {
+    file:'_DSC0546.JPG', icon:'🏫',
+    label:'Salón 308 — Interior',
+    desc:'Interior del Salón 308.',
+    forward:'s308_b', forwardLabel:'Ver más del salón',
+    back:'h_5', backLabel:'← Volver al pasillo',
+    right:null, left:null,
+    room:'salon_308', isRoom:true,
+  },
+  s308_b: {
+    file:'_DSC0542.JPG', icon:'🏫',
+    label:'Salón 308 — Ventanas',
+    desc:'Ventanas del Salón 308 con vista al exterior.',
+    forward:null,
+    back:'s308_a', backLabel:'← Volver',
+    right:null, left:null,
+    room:'salon_308', isRoom:true,
+  },
+
+  // ── SALA DE INFORMÁTICA (1) ──
+  comp1_a: {
+    file:'_DSC0550.JPG', icon:'💻',
+    label:'Sala de Informática — Vista Frontal',
+    desc:'Computadoras en disposición semicircular. Sala amplia.',
+    forward:'comp1_b', forwardLabel:'Ver más de la sala',
+    back:'h_6', backLabel:'← Volver al pasillo',
+    right:null, left:null,
+    room:'sala_informatica', isRoom:true,
+  },
+  comp1_b: {
+    file:'_DSC0551.JPG', icon:'💻',
+    label:'Sala de Informática — Lateral',
+    desc:'Vista lateral de los monitores y computadoras.',
+    forward:'s310_door', forwardLabel:'→ Sala TIC (Salón 310)',
+    back:'comp1_a', backLabel:'← Volver',
+    right:null, left:null,
+    room:'sala_informatica', isRoom:true,
+  },
+
+  // ── SALÓN 310 / SALA TIC ──
+  s310_door: {
+    file:'_DSC0555.JPG', icon:'💻',
+    label:'Salón 310 / Sala TIC — Puerta',
+    desc:'Entrada al Salón 310. Sala de tecnología.',
+    forward:'s310_a', forwardLabel:'Entrar a la Sala TIC',
+    back:'comp1_b', backLabel:'← Volver',
+    right:null, left:null,
+    room:'salon_310', isRoom:true,
+  },
+  s310_a: {
+    file:'_DSC0556.JPG', icon:'💻',
+    label:'Sala TIC — Interior',
+    desc:'Televisor inteligente, computadoras modernas y sillas coloridas.',
+    forward:'s310_b', forwardLabel:'Ver más de la sala',
+    back:'s310_door', backLabel:'← Volver a la puerta',
+    right:null, left:null,
+    room:'salon_310', isRoom:true,
+  },
+  s310_b: {
+    file:'_DSC0558.JPG', icon:'💻',
+    label:'Sala TIC — Computadoras',
+    desc:'Fila de computadoras con cortinas decorativas de animales marinos.',
+    forward:null,
+    back:'s310_a', backLabel:'← Volver',
+    right:null, left:null,
+    room:'salon_310', isRoom:true,
+  },
+
+  // ── ASCENSOR ──
+  ascensor_node: {
+    file:'_DSC0562.JPG', icon:'🛗',
+    label:'Ascensor ♿ — Tercer Piso',
+    desc:'Ascensor accesible. Sirve todos los pisos del colegio.',
+    forward:null,
+    back:'h_7', backLabel:'← Volver al pasillo',
+    right:null, left:null,
+    room:'ascensor', isRoom:true,
+  },
+
+  // ── BAÑOS ──
+  bath_inside: {
+    file:'_DSC0570.JPG', icon:'🚻',
+    label:'Baños — Interior',
+    desc:'Baños del tercer piso. Lavamanos con espejo.',
+    forward:null,
+    back:'h_9', backLabel:'← Volver al pasillo',
+    right:null, left:null,
+    room:'banos', isRoom:true,
+  },
+
+  // ── SALÓN 304 ──
+  s304_door: {
+    file:'_DSC0598.JPG', icon:'🏫',
+    label:'Salón 304 — Puerta',
+    desc:'Entrada al Salón 304.',
+    forward:'s304_a', forwardLabel:'Entrar al Salón 304',
+    back:'h_11', backLabel:'← Volver al pasillo',
+    right:null, left:null,
+    room:'salon_304', isRoom:true,
+  },
+  s304_a: {
+    file:'_DSC0600.JPG', icon:'🏫',
+    label:'Salón 304 — Interior',
+    desc:'Interior del Salón 304.',
+    forward:'s304_b', forwardLabel:'Ver más del salón',
+    back:'s304_door', backLabel:'← Volver a la puerta',
+    right:null, left:null,
+    room:'salon_304', isRoom:true,
+  },
+  s304_b: {
+    file:'_DSC0610.JPG', icon:'🏫',
+    label:'Salón 304 — Ventanas',
+    desc:'Vista desde las ventanas. Gran panorámica de la ciudad.',
+    forward:null,
+    back:'s304_a', backLabel:'← Volver',
+    right:null, left:null,
+    room:'salon_304', isRoom:true,
+  },
+};
+
+// ═══════════════════════════════════════════════════════
+// SEARCHABLE ROOMS
+// ═══════════════════════════════════════════════════════
+const ROOMS = {
+  salon_311: {
+    name:'Salón 311', icon:'🏫',
+    startNode:'s311_door',
+    route:['h_start','s311_door'],
+    terms:['311','salon 311'],
+  },
+  salon_309: {
+    name:'Salón 309', icon:'🏫',
+    startNode:'s309_a',
+    route:['h_start','h_2','h_3','h_4','s309_a'],
+    terms:['309','salon 309'],
+  },
+  salon_308: {
+    name:'Salón 308', icon:'🏫',
+    startNode:'s308_a',
+    route:['h_start','h_2','h_3','h_4','h_5','s308_a'],
+    terms:['308','salon 308'],
+  },
+  sala_informatica: {
+    name:'Sala de Informática', icon:'💻',
+    startNode:'comp1_a',
+    route:['h_start','h_2','h_3','h_4','h_5','h_6','comp1_a'],
+    terms:['informatica','informática','computadores','computadoras','sistemas','sala','ordenadores'],
+  },
+  salon_310: {
+    name:'Salón 310 / Sala TIC', icon:'💻',
+    startNode:'s310_door',
+    route:['h_start','h_2','h_3','h_4','h_5','h_6','comp1_a','comp1_b','s310_door'],
+    terms:['310','salon 310','tic','tecnologia','tecnología','sala tic'],
+  },
+  ascensor: {
+    name:'Ascensor ♿', icon:'🛗',
+    startNode:'ascensor_node',
+    route:['h_start','h_2','h_3','h_4','h_5','h_6','h_7','ascensor_node'],
+    terms:['ascensor','elevador','accesibilidad','discapacidad','movilidad'],
+  },
+  banos: {
+    name:'Baños 3° Piso', icon:'🚻',
+    startNode:'bath_inside',
+    route:['h_start','h_2','h_3','h_4','h_5','h_6','h_7','h_8','h_9','bath_inside'],
+    terms:['baño','bano','baños','damas','hombres','mujeres','sanitario'],
+  },
+  salon_304: {
+    name:'Salón 304', icon:'🏫',
+    startNode:'s304_door',
+    route:['h_start','h_2','h_3','h_4','h_5','h_6','h_7','h_8','h_9','h_10','h_11','s304_door'],
+    terms:['304','salon 304'],
+  },
+  escal_amarilla: {
+    name:'Escaleras de Emergencia', icon:'🪜',
+    startNode:'h_end',
+    route:['h_start','h_2','h_3','h_4','h_5','h_6','h_7','h_8','h_9','h_10','h_11','h_12','h_end'],
+    terms:['escaleras','emergencia','amarillas','salida','exit'],
+  },
+};
+
+// ═══════════════════════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════════════════════
+const BASE = 'fotos-3/';
+let cur = 'h_start';
+let route = null;      // active route node-id array
+let autoTimer = null;
+let playing = false;
+
+// ═══════════════════════════════════════════════════════
+// CORE: navigate to a node
+// ═══════════════════════════════════════════════════════
+function goTo(nodeId) {
+  if (!G[nodeId]) return;
+  cur = nodeId;
+  const n = G[nodeId];
+
+  // Fade photo
+  const img = document.getElementById('photo-img');
+  img.classList.add('fade');
+  setTimeout(() => {
+    img.src = BASE + n.file;
+    img.alt = n.label;
+    img.classList.remove('fade');
+  }, 150);
+
+  // Location chip
+  document.getElementById('loc-icon').textContent = n.icon || '📍';
+  document.getElementById('loc-text').textContent = n.label;
+
+  // Desc chip (brief)
+  const dc = document.getElementById('desc-chip');
+  dc.textContent = n.desc || '';
+  dc.classList.add('show');
+  clearTimeout(dc._t);
+  dc._t = setTimeout(() => dc.classList.remove('show'), 4000);
+
+  // Nav buttons
+  refreshButtons(n);
+
+  // Route progress
+  if (route) updateProgress(nodeId);
+
+  // Sidebar highlight
+  document.querySelectorAll('.rstep').forEach(el => el.classList.remove('active'));
+  const step = document.getElementById('rs-' + nodeId);
+  if (step) { step.classList.add('active'); step.scrollIntoView({ behavior:'smooth', block:'nearest' }); }
+}
+
+function go(dir) {
+  const node = G[cur];
+  if (node && node[dir]) goTo(node[dir]);
+}
+
+function refreshButtons(n) {
+  const cfg = {
+    'btn-fwd':   { has: !!n.forward,  label: n.forwardLabel  || 'Avanzar',  id:'lbl-fwd'   },
+    'btn-back':  { has: !!n.back,     label: n.backLabel     || 'Regresar', id:'lbl-back'  },
+    'btn-right': { has: !!n.right,    label: n.rightLabel    || 'Entrar',   id:'lbl-right' },
+    'btn-left':  { has: !!n.left,     label: n.leftLabel     || 'Salir',    id:'lbl-left'  },
+  };
+  Object.entries(cfg).forEach(([btnId, c]) => {
+    const btn = document.getElementById(btnId);
+    btn.classList.toggle('on', c.has);
+    const lbl = document.getElementById(c.id);
+    if (lbl) lbl.textContent = c.label;
+  });
+}
+
+// ═══════════════════════════════════════════════════════
+// ROUTE MODE
+// ═══════════════════════════════════════════════════════
+function startRoute(roomId) {
+  const rm = ROOMS[roomId];
+  if (!rm) return;
+  route = rm.route;
+
+  // Route strip
+  document.getElementById('route-label').textContent = '→ ' + rm.name;
+  document.getElementById('route-strip').classList.add('on');
+  updateProgress('h_start');
+
+  // Sidebar
+  buildSidebar(rm);
+
+  // Go to start
+  goTo('h_start');
+}
+
+function updateProgress(nodeId) {
+  if (!route) return;
+  const pos = route.indexOf(nodeId);
+  if (pos === -1) return;
+  const pct = Math.round((pos / (route.length - 1)) * 100);
+  document.getElementById('progress-bar-fill').style.width = pct + '%';
+  document.getElementById('route-pct').textContent = pct + '%';
+}
+
+function buildSidebar(rm) {
+  const sb = document.getElementById('sb-body');
+  sb.innerHTML = `
+    <div style="background:#1565C0;border-radius:8px;padding:10px 12px;margin-bottom:12px;font-size:13px;font-weight:600;color:#fff;display:flex;align-items:center;gap:8px;">
+      ${rm.icon} Ruta hacia ${rm.name}
+    </div>
+    ${rm.route.map((nid, i) => {
+      const n = G[nid];
+      if (!n) return '';
+      const isS = i === 0, isD = i === rm.route.length - 1;
+      return `
+        <div class="rstep" id="rs-${nid}" onclick="goTo('${nid}')">
+          <div class="rsnum ${isS?'s':isD?'d':''}">${isS?'🪜':isD?'📍':(n.icon||'➡️')}</div>
+          <div class="rsbody">
+            <strong>${n.label}</strong>
+            ${n.desc}
+          </div>
+        </div>`;
+    }).join('')}`;
+}
+
+// ═══════════════════════════════════════════════════════
+// AUTOPLAY
+// ═══════════════════════════════════════════════════════
+function toggleAuto() {
+  playing ? stopAuto() : startAuto();
+}
+function startAuto() {
+  playing = true;
+  document.getElementById('btn-auto').textContent = '⏸ Pausar';
+  document.getElementById('btn-auto').classList.add('playing');
+  tick();
+}
+function stopAuto() {
+  playing = false;
+  clearTimeout(autoTimer);
+  document.getElementById('btn-auto').textContent = '▶ Auto';
+  document.getElementById('btn-auto').classList.remove('playing');
+}
+function tick() {
+  if (!playing) return;
+  if (route) {
+    const pos = route.indexOf(cur);
+    if (pos !== -1 && pos < route.length - 1) {
+      goTo(route[pos + 1]);
+      autoTimer = setTimeout(tick, 2400);
+    } else { stopAuto(); }
+  } else {
+    const next = G[cur]?.forward;
+    if (next) { goTo(next); autoTimer = setTimeout(tick, 2400); }
+    else { stopAuto(); }
+  }
+}
+
+// ═══════════════════════════════════════════════════════
+// SEARCH
+// ═══════════════════════════════════════════════════════
+const norm = s => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
+
+function doSearch(q) {
+  if (!q.trim()) return [];
+  const nq = norm(q);
+  return Object.entries(ROOMS).filter(([,r]) =>
+    norm(r.name).includes(nq) || r.terms.some(t => norm(t).includes(nq))
+  ).slice(0, 8);
+}
+
+function showSugs(res) {
+  const el = document.getElementById('sugs');
+  if (!res.length) { el.classList.remove('open'); return; }
+  el.innerHTML = res.map(([id,r]) =>
+    `<div class="si" onclick="pick('${id}')"><span class="si-badge">${r.icon}</span>${r.name}</div>`
+  ).join('');
+  el.classList.add('open');
+}
+
+function pick(roomId) {
+  const rm = ROOMS[roomId];
+  if (!rm) return;
+  document.getElementById('sugs').classList.remove('open');
+  document.getElementById('search').value = rm.name;
+  stopAuto();
+  startRoute(roomId);
+  startAuto();
+}
+
+document.getElementById('search').addEventListener('input', e => showSugs(doSearch(e.target.value)));
+document.getElementById('search').addEventListener('keydown', e => {
+  if (e.key === 'Escape') document.getElementById('sugs').classList.remove('open');
+  if (e.key === 'Enter') { const r = doSearch(e.target.value); if (r.length) pick(r[0][0]); }
+});
+document.addEventListener('click', e => {
+  if (!e.target.closest('.search-wrap')) document.getElementById('sugs').classList.remove('open');
+});
+
+// Keyboard navigation
+document.addEventListener('keydown', e => {
+  if (e.target.tagName === 'INPUT') return;
+  const map = { ArrowUp:'forward', ArrowDown:'back', ArrowRight:'right', ArrowLeft:'left' };
+  if (map[e.key]) { e.preventDefault(); go(map[e.key]); }
+  if (e.key === ' ') { e.preventDefault(); toggleAuto(); }
+});
+
+// Init
+goTo('h_start');
+</script>
+</body>
+</html>
