@@ -845,16 +845,19 @@ const G = {
 
   // Main hallway (y=148)
   p_h0:         { x:146,  y:148, nb:{ entrada:1, s109:1.5, p_h1:1.5, escal_sot:2 } },
-  p_h1:         { x:240,  y:148, nb:{ p_h0:1.5, entrada_parq:1.5, p_h2:1.5, asc:1.5 } },
-  p_h2:         { x:325,  y:148, nb:{ p_h1:1.5, entrada_parq:1.5, p_h3:2 } },
-  p_h3:         { x:529,  y:148, nb:{ p_h2:2, s108:1, p_cancha:1 } },
+  p_h1:         { x:240,  y:148, nb:{ p_h0:1.5, entrada_parq:1.5, p_asc:0.5 } },
+  p_asc:        { x:248,  y:148, nb:{ p_h1:0.5, p_h2:1, asc:1 } },
+  p_h2:         { x:325,  y:148, nb:{ p_asc:1, entrada_parq:1.5, p_bano:0.5 } },
+  p_bano:       { x:337,  y:148, nb:{ p_h2:0.5, p_h3:2, bano_f:1 } },
+  p_h3:         { x:529,  y:148, nb:{ p_bano:2, s108:1, p_cancha:1 } },
   p_cancha:     { x:591,  y:148, nb:{ p_h3:1, p_h4:1, cancha_top:1.5 } },
   p_h4:         { x:643,  y:148, nb:{ p_cancha:1, s107:1, p_h5:1.5 } },
   p_h5:         { x:757,  y:148, nb:{ p_h4:1.5, s106:1, p_pica:1 } },
   p_pica:       { x:793,  y:148, nb:{ p_h5:1, p_h6:1, dona_pica_n:1 } },
   p_h6:         { x:871,  y:148, nb:{ p_pica:1, s105:1, p_escal:1 } },
-  p_escal:      { x:919,  y:148, nb:{ p_h6:1, p_h7:1, escal_arr:1 } },
-  p_h7:         { x:962,  y:148, nb:{ p_escal:1, p_h8:1 } },
+  p_escal:      { x:919,  y:148, nb:{ p_h6:1, p_play:0.5, escal_arr:1 } },
+  p_play:       { x:933,  y:148, nb:{ p_escal:0.5, p_h7:0.5, play:3 } },
+  p_h7:         { x:962,  y:148, nb:{ p_play:0.5, p_h8:1 } },
   p_h8:         { x:1028, y:148, nb:{ p_h7:1, capilla:1.5, ala_top:1.5 } },
   capilla:      { x:1181, y:148, nb:{ p_h8:1.5 } },
 
@@ -868,39 +871,42 @@ const G = {
 
   // Below-corridor strip (y≈232)
   escal_arr:    { x:919,  y:232, nb:{ p_escal:1 } },
-  dona_pica_n:  { x:793,  y:232, nb:{ p_pica:1, escal_arr:1 } },
+  dona_pica_n:  { x:793,  y:232, nb:{ p_pica:1 } },
   enferm:       { x:61,   y:232, nb:{ entrada:1.5, zona_prof:2, escal_sot:1 } },
-  asc:          { x:248,  y:232, nb:{ p_h1:1.5, bano_f:1 } },
-  bano_f:       { x:337,  y:232, nb:{ asc:1, bano_m:1 } },
+  asc:          { x:248,  y:232, nb:{ p_asc:1 } },
+  bano_f:       { x:337,  y:232, nb:{ p_bano:1, bano_m:1 } },
   bano_m:       { x:428,  y:232, nb:{ bano_f:1 } },
 
   // Zona de Profesores
   zona_prof:    { x:61,   y:472, nb:{ enferm:2 } },
 
   // Plazoleta — escaleras generales (norte)
-  escal_sot:    { x:148,  y:232, nb:{ p_h0:1, enferm:1, tienda:4 } },
+  escal_sot:    { x:148,  y:232, nb:{ p_h0:1, enferm:1, plaz:2 } },
+
+  // Plazoleta central
+  plaz:         { x:148,  y:420, nb:{ escal_sot:2, papel:2, tienda:1.5, escal_lud:2.5 } },
 
   // Plazoleta — sur
-  papel:        { x:123,  y:606, nb:{ tienda:1 } },
-  tienda:       { x:189,  y:606, nb:{ escal_sot:4, papel:1, escal_lud:1 } },
-  escal_lud:    { x:261,  y:606, nb:{ tienda:1 } },
+  papel:        { x:123,  y:606, nb:{ plaz:2 } },
+  tienda:       { x:189,  y:606, nb:{ plaz:1.5, escal_lud:1 } },
+  escal_lud:    { x:261,  y:606, nb:{ tienda:1, plaz:2.5 } },
 
   // Cancha
   cancha:       { x:591,  y:475, nb:{ cancha_top:1.5 } },
   cancha_top:   { x:591,  y:290, nb:{ p_cancha:1.5, cancha:1.5 } },
 
   // Ala capilla
-  ala_top:      { x:1028, y:330, nb:{ s104:0.5, ala2:1.5, play:2, p_h8:1.5 } },
+  ala_top:      { x:1028, y:330, nb:{ s104:0.5, ala2:1.5, p_h8:1.5 } },
   s104:         { x:1182, y:330, nb:{ ala_top:0.5 } },
-  ala2:         { x:1028, y:422, nb:{ ala_top:1.5, s103:0.5, ala3:1.5, play:1.5 } },
+  ala2:         { x:1028, y:422, nb:{ ala_top:1.5, s103:0.5, ala3:1.5 } },
   s103:         { x:1182, y:422, nb:{ ala2:0.5 } },
-  ala3:         { x:1028, y:514, nb:{ ala2:1.5, s102:0.5, ala4:1.5, play:1.5 } },
+  ala3:         { x:1028, y:514, nb:{ ala2:1.5, s102:0.5, ala4:1.5 } },
   s102:         { x:1182, y:514, nb:{ ala3:0.5 } },
-  ala4:         { x:1028, y:606, nb:{ ala3:1.5, s101:0.5, play:2 } },
+  ala4:         { x:1028, y:606, nb:{ ala3:1.5, s101:0.5 } },
   s101:         { x:1182, y:606, nb:{ ala4:0.5 } },
 
-  // Playground (entre cancha y ala este)
-  play:         { x:933,  y:472, nb:{ ala_top:2, ala2:1.5, ala3:1.5, ala4:2 } },
+  // Playground (entre cancha y ala este) — solo accesible desde pasillo
+  play:         { x:933,  y:472, nb:{ p_play:3 } },
 
   // Sótano
   sotano:       { x:47,   y:11,  nb:{ entrada:3 } },
@@ -959,11 +965,15 @@ const LOCS_2 = {
   escaleras_generales: { name:'Escaleras Generales',      type:'stairs',   svgId:'p2-loc-escal-gen', photo:'fotos/Escaleras-Este.JPG',  terms:['escaleras','generales','todos los pisos'] },
 };
 const G_2 = {
-  escal_gen: { x:148,  y:232, nb:{ p_h0:1, asc:1 } },
-  p_h0:      { x:146,  y:148, nb:{ s209:1.5, p_h1:1.5, escal_gen:1, s210:2 } },
-  p_h1:      { x:240,  y:148, nb:{ p_h0:1.5, p_h2:1.5, asc:1.5, s208:1 } },
-  p_h2:      { x:325,  y:148, nb:{ p_h1:1.5, p_h3:2 } },
-  p_h3:      { x:529,  y:148, nb:{ p_h2:2, p_h4:1.5 } },
+  escal_gen: { x:148,  y:232, nb:{ p_h0:1 } },
+  p_h0:      { x:146,  y:148, nb:{ s209:1.5, p_h1:1.5, escal_gen:1, p_left:1 } },
+  p_left:    { x:61,   y:148, nb:{ p_h0:1, s210:1, left_low:1 } },
+  left_low:  { x:61,   y:232, nb:{ p_left:1, s211:1.5 } },
+  p_h1:      { x:240,  y:148, nb:{ p_h0:1.5, p_asc:0.5 } },
+  p_asc:     { x:248,  y:148, nb:{ p_h1:0.5, p_h2:1, asc:1, s208:1 } },
+  p_h2:      { x:325,  y:148, nb:{ p_asc:1, p_bano:0.5 } },
+  p_bano:    { x:337,  y:148, nb:{ p_h2:0.5, p_h3:2, bano_f:1 } },
+  p_h3:      { x:529,  y:148, nb:{ p_bano:2, p_h4:1.5 } },
   p_h4:      { x:643,  y:148, nb:{ p_h3:1.5, s207:1, p_h5:1.5 } },
   p_h5:      { x:757,  y:148, nb:{ p_h4:1.5, s206:1, p_h6:1.5 } },
   p_h6:      { x:871,  y:148, nb:{ p_h5:1.5, p_escal:1 } },
@@ -971,16 +981,16 @@ const G_2 = {
   p_h7:      { x:962,  y:148, nb:{ p_escal:1, p_h8:1, s205:1 } },
   p_h8:      { x:1028, y:148, nb:{ p_h7:1, s204:1, ala_top:1.5 } },
   s209:      { x:146,  y:65,  nb:{ p_h0:1.5 } },
-  s208:      { x:253,  y:65,  nb:{ p_h1:1 } },
+  s208:      { x:253,  y:65,  nb:{ p_asc:1 } },
   s207:      { x:643,  y:65,  nb:{ p_h4:1 } },
   s206:      { x:757,  y:65,  nb:{ p_h5:1 } },
   s205:      { x:929,  y:65,  nb:{ p_h7:1 } },
   escal_arr: { x:919,  y:232, nb:{ p_escal:1 } },
-  asc:       { x:248,  y:232, nb:{ p_h1:1.5, bano_f:1, escal_gen:1 } },
-  bano_f:    { x:337,  y:232, nb:{ asc:1, bano_m:1 } },
+  asc:       { x:248,  y:232, nb:{ p_asc:1 } },
+  bano_f:    { x:337,  y:232, nb:{ p_bano:1, bano_m:1 } },
   bano_m:    { x:428,  y:232, nb:{ bano_f:1 } },
-  s210:      { x:61,   y:65,  nb:{ p_h0:1.5 } },
-  s211:      { x:-34,  y:232, nb:{ p_h0:2, s212:1.2 } },
+  s210:      { x:61,   y:65,  nb:{ p_left:1 } },
+  s211:      { x:-34,  y:232, nb:{ left_low:1.5, s212:1.2 } },
   s212:      { x:-34,  y:514, nb:{ s211:1.2 } },
   ala_top:   { x:1028, y:330, nb:{ s203:0.5, ala2:1.5, p_h8:1.5 } },
   s204:      { x:1182, y:65,  nb:{ p_h8:1 } },
@@ -1023,11 +1033,15 @@ const LOCS_3 = {
   escaleras_generales: { name:'Escaleras Generales',    type:'stairs',   svgId:'p3-loc-escal-gen', photo:'fotos/P3-pasillo-1.JPG',   terms:['escaleras','generales','todos los pisos'] },
 };
 const G_3 = {
-  escal_gen: { x:148,  y:232, nb:{ p_h0:1, asc:1 } },
-  p_h0:      { x:146,  y:148, nb:{ s309:1.5, p_h1:1.5, escal_gen:1, s310:2 } },
-  p_h1:      { x:240,  y:148, nb:{ p_h0:1.5, p_h2:1.5, asc:1.5, s308:1 } },
-  p_h2:      { x:325,  y:148, nb:{ p_h1:1.5, p_h3:2 } },
-  p_h3:      { x:529,  y:148, nb:{ p_h2:2, p_h4:1.5 } },
+  escal_gen: { x:148,  y:232, nb:{ p_h0:1 } },
+  p_h0:      { x:146,  y:148, nb:{ s309:1.5, p_h1:1.5, escal_gen:1, p_left:1 } },
+  p_left:    { x:61,   y:148, nb:{ p_h0:1, s310:1, left_low:1 } },
+  left_low:  { x:61,   y:232, nb:{ p_left:1, s311:1.5 } },
+  p_h1:      { x:240,  y:148, nb:{ p_h0:1.5, p_asc:0.5 } },
+  p_asc:     { x:248,  y:148, nb:{ p_h1:0.5, p_h2:1, asc:1, s308:1 } },
+  p_h2:      { x:325,  y:148, nb:{ p_asc:1, p_bano:0.5 } },
+  p_bano:    { x:337,  y:148, nb:{ p_h2:0.5, p_h3:2, bano_f:1 } },
+  p_h3:      { x:529,  y:148, nb:{ p_bano:2, p_h4:1.5 } },
   p_h4:      { x:643,  y:148, nb:{ p_h3:1.5, s307:1, p_h5:1.5 } },
   p_h5:      { x:757,  y:148, nb:{ p_h4:1.5, s306:1, p_h6:1.5 } },
   p_h6:      { x:871,  y:148, nb:{ p_h5:1.5, p_escal:1 } },
@@ -1035,16 +1049,16 @@ const G_3 = {
   p_h7:      { x:962,  y:148, nb:{ p_escal:1, p_h8:1, s305:1 } },
   p_h8:      { x:1028, y:148, nb:{ p_h7:1, s304:1, ala_top:1.5 } },
   s309:      { x:146,  y:65,  nb:{ p_h0:1.5 } },
-  s308:      { x:253,  y:65,  nb:{ p_h1:1 } },
+  s308:      { x:253,  y:65,  nb:{ p_asc:1 } },
   s307:      { x:643,  y:65,  nb:{ p_h4:1 } },
   s306:      { x:757,  y:65,  nb:{ p_h5:1 } },
   s305:      { x:929,  y:65,  nb:{ p_h7:1 } },
   escal_arr: { x:919,  y:232, nb:{ p_escal:1 } },
-  asc:       { x:248,  y:232, nb:{ p_h1:1.5, bano_f:1, escal_gen:1 } },
-  bano_f:    { x:337,  y:232, nb:{ asc:1, bano_m:1 } },
+  asc:       { x:248,  y:232, nb:{ p_asc:1 } },
+  bano_f:    { x:337,  y:232, nb:{ p_bano:1, bano_m:1 } },
   bano_m:    { x:428,  y:232, nb:{ bano_f:1 } },
-  s310:      { x:61,   y:65,  nb:{ p_h0:1.5 } },
-  s311:      { x:-34,  y:232, nb:{ p_h0:2, s312:1.2 } },
+  s310:      { x:61,   y:65,  nb:{ p_left:1 } },
+  s311:      { x:-34,  y:232, nb:{ left_low:1.5, s312:1.2 } },
   s312:      { x:-34,  y:322, nb:{ s311:1.2, s313:1.2 } },
   s313:      { x:-34,  y:514, nb:{ s312:1.2 } },
   ala_top:   { x:1028, y:330, nb:{ s303:0.5, ala2:1.5, p_h8:1.5 } },
@@ -1105,7 +1119,7 @@ function findPath(start, end, Gx) {
 // ─────────────────────────────────────────────────────
 // INSTRUCTIONS
 // ─────────────────────────────────────────────────────
-const SKIP_NODES = new Set(['p_h0','p_h1','p_h2','p_h3','p_h4','p_h5','p_h6','p_h7','p_h8','p_escal','p_pica','p_cancha','ala_top','ala2','ala3','ala4','cancha_top']);
+const SKIP_NODES = new Set(['p_h0','p_h1','p_h2','p_h3','p_h4','p_h5','p_h6','p_h7','p_h8','p_escal','p_pica','p_cancha','ala_top','ala2','ala3','ala4','cancha_top','p_asc','p_bano','p_play','p_left','left_low','plaz']);
 
 const FLOOR_DIRECTIONS = {
   escal_arr:    'Toma las escaleras del lado de la Capilla',
