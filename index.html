@@ -156,7 +156,7 @@
                   ZONA DE JUEGOS — PARQUE INFANTIL  (todo el ancho)
       ══════════════════════════════════════════════════════════════════════════
     -->
-    <svg id="floor-1-map" class="floor-svg active" viewBox="0 0 1150 680" xmlns="http://www.w3.org/2000/svg">
+    <svg id="floor-1-map" class="floor-svg active" viewBox="0 0 1280 680" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <pattern id="dots" width="18" height="18" patternUnits="userSpaceOnUse">
           <circle cx="9" cy="9" r=".85" fill="#B0BEC5"/>
@@ -167,8 +167,8 @@
       </defs>
 
       <!-- Overall background -->
-      <rect width="1150" height="680" fill="#E8EDF0"/>
-      <rect width="1150" height="680" fill="url(#dots)"/>
+      <rect width="1280" height="680" fill="#E8EDF0"/>
+      <rect width="1280" height="680" fill="url(#dots)"/>
 
       <!-- ══════════════════════════════════════════
            EXTERIOR STRIP (arriba)
@@ -250,10 +250,11 @@
         <rect x="668" y="109" width="9" height="11" rx="2"/>
         <rect x="778" y="109" width="9" height="11" rx="2"/>
         <rect x="888" y="109" width="9" height="11" rx="2"/>
+        <rect x="998" y="109" width="9" height="11" rx="2"/>
       </g>
 
       <!-- Hallway label -->
-      <text x="520" y="153" text-anchor="middle" font-size="12" fill="#8D6E63" font-weight="700" letter-spacing="1.8">PASILLO PRINCIPAL</text>
+      <text x="575" y="153" text-anchor="middle" font-size="12" fill="#8D6E63" font-weight="700" letter-spacing="1.8">PASILLO PRINCIPAL</text>
 
       <!-- ENTRADA (left cap) -->
       <g id="loc-entrada" class="clickable" onclick="navigateTo('entrada')">
@@ -262,12 +263,12 @@
         <text class="rl" x="61" y="179" text-anchor="middle" font-size="18" fill="#2E7D32">🚪</text>
       </g>
 
-      <!-- CAPILLA (right cap) -->
+      <!-- CAPILLA — fuera del pasillo principal, a la derecha -->
       <g id="loc-capilla" class="clickable" onclick="navigateTo('capilla')">
-        <rect class="rf" x="998" y="108" width="122" height="80" rx="0" fill="#FFF8E1" stroke="#FFD54F" stroke-width="2"/>
-        <text class="rl" x="1059" y="138" text-anchor="middle" font-size="10.5" fill="#4E342E" font-weight="700">⛪ CAPILLA</text>
-        <text class="rl" x="1059" y="155" text-anchor="middle" font-size="8.5" fill="#6D4C41">Paz y Bien</text>
-        <text class="rl" x="1059" y="170" text-anchor="middle" font-size="7.5" fill="#8D6E63">Franciscana ☩</text>
+        <rect class="rf" x="1120" y="108" width="122" height="80" rx="5" fill="#FFF8E1" stroke="#FFD54F" stroke-width="2" filter="url(#sh)"/>
+        <text class="rl" x="1181" y="138" text-anchor="middle" font-size="10.5" fill="#4E342E" font-weight="700">⛪ CAPILLA</text>
+        <text class="rl" x="1181" y="155" text-anchor="middle" font-size="8.5" fill="#6D4C41">Paz y Bien</text>
+        <text class="rl" x="1181" y="170" text-anchor="middle" font-size="7.5" fill="#8D6E63">Franciscana ☩</text>
       </g>
 
       <!-- ══════════════════════════════════════════
@@ -283,6 +284,15 @@
         <text class="rl" x="61" y="242" text-anchor="middle" font-size="7.5" fill="#BF360C" font-weight="700">ENFER-</text>
         <text class="rl" x="61" y="254" text-anchor="middle" font-size="7.5" fill="#BF360C" font-weight="700">MERÍA</text>
         <text class="rl" x="61" y="266" text-anchor="middle" font-size="7" fill="#D84315">Primeros</text>
+      </g>
+
+      <!-- Escaleras Generales — hueco entre enfermería y ascensor -->
+      <g id="loc-escal-sot" class="clickable" onclick="navigateTo('escaleras_sotano')">
+        <rect class="rf" x="90" y="192" width="116" height="80" rx="5" fill="#BBDEFB" filter="url(#sh)"/>
+        <text class="rl" x="148" y="218" text-anchor="middle" font-size="20" fill="#0D47A1">🪜</text>
+        <text class="rl" x="148" y="237" text-anchor="middle" font-size="8.5" fill="#0D47A1" font-weight="700">ESCALERAS GENERALES</text>
+        <text class="rl" x="148" y="251" text-anchor="middle" font-size="7.5" fill="#1565C0">↓ Sótano  ·  ↑ 2° / 3°</text>
+        <text class="rl" x="148" y="264" text-anchor="middle" font-size="7" fill="#42A5F5">Todos los pisos</text>
       </g>
 
       <!-- Ascensor — paralelo a Entrada Parqueadero, bajo el pasillo -->
@@ -312,22 +322,22 @@
         <text class="rl" x="428" y="268" text-anchor="middle" font-size="8" fill="#42A5F5">🚻</text>
       </g>
 
-      <!-- Doña Pica (tienda 2) — bajo pasillo lado este -->
+      <!-- Doña Pica (tienda 2) — desplazada a la izquierda -->
       <g id="loc-dona-pica" class="clickable" onclick="navigateTo('dona_pica')">
-        <rect class="rf" x="856" y="192" width="126" height="80" rx="5" fill="#FFCCBC" filter="url(#sh)"/>
-        <text class="rl" x="919" y="218" text-anchor="middle" font-size="18" fill="#BF360C">🍡</text>
-        <text class="rl" x="919" y="237" text-anchor="middle" font-size="8.5" fill="#4E342E" font-weight="700">TIENDA</text>
-        <text class="rl" x="919" y="251" text-anchor="middle" font-size="8" fill="#5D4037">Doña Pica</text>
-        <text class="rl" x="919" y="264" text-anchor="middle" font-size="7" fill="#795548">Cafetería</text>
+        <rect class="rf" x="730" y="192" width="126" height="80" rx="5" fill="#FFCCBC" filter="url(#sh)"/>
+        <text class="rl" x="793" y="218" text-anchor="middle" font-size="18" fill="#BF360C">🍡</text>
+        <text class="rl" x="793" y="237" text-anchor="middle" font-size="8.5" fill="#4E342E" font-weight="700">TIENDA</text>
+        <text class="rl" x="793" y="251" text-anchor="middle" font-size="8" fill="#5D4037">Doña Pica</text>
+        <text class="rl" x="793" y="264" text-anchor="middle" font-size="7" fill="#795548">Cafetería</text>
       </g>
 
-      <!-- Escaleras → 2°/3° (reubicadas: bajo capilla, sobre salón 104) -->
+      <!-- Escaleras → 2°/3° Lado Capilla -->
       <g id="loc-escal-cap" class="clickable" onclick="navigateTo('escaleras_arriba')">
-        <rect class="rf" x="988" y="192" width="130" height="80" rx="5" fill="#BBDEFB" filter="url(#sh)"/>
-        <text class="rl" x="1053" y="218" text-anchor="middle" font-size="18" fill="#0D47A1">🪜</text>
-        <text class="rl" x="1053" y="237" text-anchor="middle" font-size="8.5" fill="#0D47A1" font-weight="700">ESCALERAS</text>
-        <text class="rl" x="1053" y="251" text-anchor="middle" font-size="8" fill="#0D47A1">↑ 2° / 3°</text>
-        <text class="rl" x="1053" y="264" text-anchor="middle" font-size="7" fill="#1565C0">Lado Capilla</text>
+        <rect class="rf" x="856" y="192" width="126" height="80" rx="5" fill="#BBDEFB" filter="url(#sh)"/>
+        <text class="rl" x="919" y="218" text-anchor="middle" font-size="18" fill="#0D47A1">🪜</text>
+        <text class="rl" x="919" y="237" text-anchor="middle" font-size="8.5" fill="#0D47A1" font-weight="700">ESCALERAS</text>
+        <text class="rl" x="919" y="251" text-anchor="middle" font-size="8" fill="#0D47A1">↑ 2° / 3°</text>
+        <text class="rl" x="919" y="264" text-anchor="middle" font-size="7" fill="#1565C0">Lado Capilla</text>
       </g>
 
       <!-- ══════════════════════════════════════════
@@ -348,16 +358,7 @@
       <rect x="92" y="284" width="208" height="376" rx="6" fill="#E8EAF6" stroke="#9FA8DA" stroke-width="1.5"/>
       <text x="196" y="300" text-anchor="middle" font-size="8.5" fill="#3949AB" font-weight="700" letter-spacing="1.2">PLAZOLETA</text>
 
-      <!-- Escaleras Generales (norte, horizontal) -->
-      <g id="loc-escal-sot" class="clickable" onclick="navigateTo('escaleras_sotano')">
-        <rect class="rf" x="94" y="304" width="204" height="66" rx="5" fill="#BBDEFB" filter="url(#sh)"/>
-        <text class="rl" x="128" y="338" text-anchor="middle" font-size="26" fill="#0D47A1">🪜</text>
-        <text class="rl" x="218" y="324" text-anchor="middle" font-size="8.5" fill="#0D47A1" font-weight="700">ESCALERAS GENERALES</text>
-        <text class="rl" x="218" y="338" text-anchor="middle" font-size="7.5" fill="#1565C0">↓ Sótano  ·  ↑ 2° / 3°</text>
-        <text class="rl" x="218" y="352" text-anchor="middle" font-size="7" fill="#42A5F5">Todos los pisos</text>
-      </g>
-
-      <!-- Espacio libre plazoleta (enfermería removida) -->
+      <!-- Espacio libre plazoleta -->
 
       <!-- Sur plazoleta (más corto): Papelería | Tienda | Escaleras Lúdico -->
       <!-- Papelería (más pequeña, oeste) -->
@@ -405,49 +406,48 @@
       </g>
 
       <!-- ══════════════════════════════════════════
-           ALA CAPILLA  x=988-1120  y=284-660
+           ALA CAPILLA  x=972-1120  y=108-660
            Salones 104 → 101  (norte → sur)
       ══════════════════════════════════════════ -->
-      <rect x="972" y="284" width="148" height="376" fill="#F5ECD7" stroke="#BCAAA4" stroke-width="1.2"/>
-      <!-- Pasillo vertical derecho -->
-      <rect x="972" y="284" width="20" height="376" fill="#EDE0C4" stroke="#BCAAA4" stroke-width="1"/>
+      <!-- Pasillo vertical derecho — igual que pisos 2/3 -->
+      <rect x="996" y="108" width="124" height="552" fill="#EDE0C4" stroke="#BCAAA4" stroke-width="1.5"/>
       <g fill="#90A4AE" opacity=".85">
-        <rect x="973" y="310" width="11" height="9" rx="2"/>
-        <rect x="973" y="398" width="11" height="9" rx="2"/>
-        <rect x="973" y="486" width="11" height="9" rx="2"/>
-        <rect x="973" y="574" width="11" height="9" rx="2"/>
+        <rect x="1111" y="325" width="9" height="11" rx="2"/>
+        <rect x="1111" y="417" width="9" height="11" rx="2"/>
+        <rect x="1111" y="509" width="9" height="11" rx="2"/>
+        <rect x="1111" y="601" width="9" height="11" rx="2"/>
       </g>
 
       <!-- Salón 104 -->
       <g id="loc-104" class="clickable" onclick="navigateTo('salon_104')">
-        <rect class="rf" x="992" y="288" width="124" height="84" rx="5" fill="#C8E6C9" filter="url(#sh)"/>
-        <text class="rl" x="1054" y="322" text-anchor="middle" font-size="22" fill="#1B5E20" font-weight="800">104</text>
-        <text class="rl" x="1054" y="342" text-anchor="middle" font-size="8.5" fill="#2E7D32">Salón de clases</text>
-        <text class="rl" x="1054" y="362" text-anchor="middle" font-size="8" fill="#388E3C">🏫</text>
+        <rect class="rf" x="1120" y="288" width="124" height="84" rx="5" fill="#C8E6C9" filter="url(#sh)"/>
+        <text class="rl" x="1182" y="322" text-anchor="middle" font-size="22" fill="#1B5E20" font-weight="800">104</text>
+        <text class="rl" x="1182" y="342" text-anchor="middle" font-size="8.5" fill="#2E7D32">Salón de clases</text>
+        <text class="rl" x="1182" y="362" text-anchor="middle" font-size="8" fill="#388E3C">🏫</text>
       </g>
 
       <!-- Salón 103 -->
       <g id="loc-103" class="clickable" onclick="navigateTo('salon_103')">
-        <rect class="rf" x="992" y="380" width="124" height="84" rx="5" fill="#C8E6C9" filter="url(#sh)"/>
-        <text class="rl" x="1054" y="414" text-anchor="middle" font-size="22" fill="#1B5E20" font-weight="800">103</text>
-        <text class="rl" x="1054" y="434" text-anchor="middle" font-size="8.5" fill="#2E7D32">Salón de clases</text>
-        <text class="rl" x="1054" y="454" text-anchor="middle" font-size="8" fill="#388E3C">🏫</text>
+        <rect class="rf" x="1120" y="380" width="124" height="84" rx="5" fill="#C8E6C9" filter="url(#sh)"/>
+        <text class="rl" x="1182" y="414" text-anchor="middle" font-size="22" fill="#1B5E20" font-weight="800">103</text>
+        <text class="rl" x="1182" y="434" text-anchor="middle" font-size="8.5" fill="#2E7D32">Salón de clases</text>
+        <text class="rl" x="1182" y="454" text-anchor="middle" font-size="8" fill="#388E3C">🏫</text>
       </g>
 
       <!-- Salón 102 -->
       <g id="loc-102" class="clickable" onclick="navigateTo('salon_102')">
-        <rect class="rf" x="992" y="472" width="124" height="84" rx="5" fill="#C8E6C9" filter="url(#sh)"/>
-        <text class="rl" x="1054" y="506" text-anchor="middle" font-size="22" fill="#1B5E20" font-weight="800">102</text>
-        <text class="rl" x="1054" y="526" text-anchor="middle" font-size="8.5" fill="#2E7D32">Salón de clases</text>
-        <text class="rl" x="1054" y="546" text-anchor="middle" font-size="8" fill="#388E3C">🏫</text>
+        <rect class="rf" x="1120" y="472" width="124" height="84" rx="5" fill="#C8E6C9" filter="url(#sh)"/>
+        <text class="rl" x="1182" y="506" text-anchor="middle" font-size="22" fill="#1B5E20" font-weight="800">102</text>
+        <text class="rl" x="1182" y="526" text-anchor="middle" font-size="8.5" fill="#2E7D32">Salón de clases</text>
+        <text class="rl" x="1182" y="546" text-anchor="middle" font-size="8" fill="#388E3C">🏫</text>
       </g>
 
       <!-- Salón 101 -->
       <g id="loc-101" class="clickable" onclick="navigateTo('salon_101')">
-        <rect class="rf" x="992" y="564" width="124" height="84" rx="5" fill="#C8E6C9" filter="url(#sh)"/>
-        <text class="rl" x="1054" y="598" text-anchor="middle" font-size="22" fill="#1B5E20" font-weight="800">101</text>
-        <text class="rl" x="1054" y="618" text-anchor="middle" font-size="8.5" fill="#2E7D32">Salón de clases</text>
-        <text class="rl" x="1054" y="638" text-anchor="middle" font-size="8" fill="#388E3C">🏫</text>
+        <rect class="rf" x="1120" y="564" width="124" height="84" rx="5" fill="#C8E6C9" filter="url(#sh)"/>
+        <text class="rl" x="1182" y="598" text-anchor="middle" font-size="22" fill="#1B5E20" font-weight="800">101</text>
+        <text class="rl" x="1182" y="618" text-anchor="middle" font-size="8.5" fill="#2E7D32">Salón de clases</text>
+        <text class="rl" x="1182" y="638" text-anchor="middle" font-size="8" fill="#388E3C">🏫</text>
       </g>
 
       <!-- ══════════════════════════════════════════
@@ -470,14 +470,14 @@
     </svg>
 
     <!-- ═══════════════ SEGUNDO PISO ═══════════════ -->
-    <svg id="floor-2-map" class="floor-svg" viewBox="0 0 1150 680" xmlns="http://www.w3.org/2000/svg">
+    <svg id="floor-2-map" class="floor-svg" viewBox="-130 0 1410 680" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <pattern id="dots2" width="18" height="18" patternUnits="userSpaceOnUse"><circle cx="9" cy="9" r=".85" fill="#B0BEC5"/></pattern>
         <filter id="sh2" x="-10%" y="-10%" width="120%" height="120%"><feDropShadow dx="1" dy="2" stdDeviation="2.5" flood-opacity=".15"/></filter>
       </defs>
-      <rect width="1150" height="680" fill="#E8EDF0"/>
-      <rect width="1150" height="680" fill="url(#dots2)"/>
-      <rect x="0" y="0" width="1150" height="22" fill="#E8F5E9" opacity=".9"/>
+      <rect x="-130" width="1410" height="680" fill="#E8EDF0"/>
+      <rect x="-130" width="1410" height="680" fill="url(#dots2)"/>
+      <rect x="-130" y="0" width="1410" height="22" fill="#E8F5E9" opacity=".9"/>
       <text x="575" y="15" text-anchor="middle" font-size="8.5" fill="#2E7D32" font-weight="600" letter-spacing="1">SEGUNDO PISO — ACCESO POR ESCALERAS O ASCENSOR</text>
 
       <!-- TOP ROW: 209, Escal.Generales, 208, 207, 206, 205 -->
@@ -488,10 +488,10 @@
         <text class="rl" x="146" y="101" text-anchor="middle" font-size="8" fill="#388E3C">🏫</text>
       </g>
       <g id="p2-loc-208" class="clickable" onclick="navigateTo('salon_208')">
-        <rect class="rf" x="476" y="22" width="106" height="86" rx="5" fill="#C8E6C9" filter="url(#sh2)"/>
-        <text class="rl" x="529" y="54" text-anchor="middle" font-size="22" fill="#1B5E20" font-weight="800">208</text>
-        <text class="rl" x="529" y="73" text-anchor="middle" font-size="8.5" fill="#2E7D32">Salón de clases</text>
-        <text class="rl" x="529" y="101" text-anchor="middle" font-size="8" fill="#388E3C">🏫</text>
+        <rect class="rf" x="200" y="22" width="106" height="86" rx="5" fill="#C8E6C9" filter="url(#sh2)"/>
+        <text class="rl" x="253" y="54" text-anchor="middle" font-size="22" fill="#1B5E20" font-weight="800">208</text>
+        <text class="rl" x="253" y="73" text-anchor="middle" font-size="8.5" fill="#2E7D32">Salón de clases</text>
+        <text class="rl" x="253" y="101" text-anchor="middle" font-size="8" fill="#388E3C">🏫</text>
       </g>
       <g id="p2-loc-207" class="clickable" onclick="navigateTo('salon_207')">
         <rect class="rf" x="590" y="22" width="106" height="86" rx="5" fill="#C8E6C9" filter="url(#sh2)"/>
@@ -506,10 +506,10 @@
         <text class="rl" x="757" y="101" text-anchor="middle" font-size="8" fill="#388E3C">🏫</text>
       </g>
       <g id="p2-loc-205" class="clickable" onclick="navigateTo('salon_205')">
-        <rect class="rf" x="818" y="22" width="106" height="86" rx="5" fill="#C8E6C9" filter="url(#sh2)"/>
-        <text class="rl" x="871" y="54" text-anchor="middle" font-size="22" fill="#1B5E20" font-weight="800">205</text>
-        <text class="rl" x="871" y="73" text-anchor="middle" font-size="8.5" fill="#2E7D32">Salón de clases</text>
-        <text class="rl" x="871" y="101" text-anchor="middle" font-size="8" fill="#388E3C">🏫</text>
+        <rect class="rf" x="876" y="22" width="106" height="86" rx="5" fill="#C8E6C9" filter="url(#sh2)"/>
+        <text class="rl" x="929" y="54" text-anchor="middle" font-size="22" fill="#1B5E20" font-weight="800">205</text>
+        <text class="rl" x="929" y="73" text-anchor="middle" font-size="8.5" fill="#2E7D32">Salón de clases</text>
+        <text class="rl" x="929" y="101" text-anchor="middle" font-size="8" fill="#388E3C">🏫</text>
       </g>
 
       <!-- PASILLO PRINCIPAL -->
@@ -519,17 +519,31 @@
         <rect x="340" y="109" width="9" height="11" rx="2"/><rect x="455" y="109" width="9" height="11" rx="2"/>
         <rect x="560" y="109" width="9" height="11" rx="2"/><rect x="668" y="109" width="9" height="11" rx="2"/>
         <rect x="778" y="109" width="9" height="11" rx="2"/><rect x="888" y="109" width="9" height="11" rx="2"/>
+        <rect x="998" y="109" width="9" height="11" rx="2"/>
       </g>
-      <text x="520" y="153" text-anchor="middle" font-size="12" fill="#8D6E63" font-weight="700" letter-spacing="1.8">PASILLO PRINCIPAL</text>
-      <g id="p2-loc-capilla" class="clickable" onclick="navigateTo('capilla')">
-        <rect class="rf" x="998" y="108" width="122" height="80" rx="0" fill="#FFF8E1" stroke="#FFD54F" stroke-width="2"/>
-        <text class="rl" x="1059" y="138" text-anchor="middle" font-size="10.5" fill="#4E342E" font-weight="700">⛪ CAPILLA</text>
-        <text class="rl" x="1059" y="155" text-anchor="middle" font-size="8.5" fill="#6D4C41">Paz y Bien</text>
-        <text class="rl" x="1059" y="170" text-anchor="middle" font-size="7.5" fill="#8D6E63">Franciscana ☩</text>
+      <text x="575" y="153" text-anchor="middle" font-size="12" fill="#8D6E63" font-weight="700" letter-spacing="1.8">PASILLO PRINCIPAL</text>
+      <!-- Pasillos verticales — dibujados primero para quedar detrás de todo -->
+      <rect x="32" y="108" width="58" height="552" fill="#EDE0C4" stroke="#BCAAA4" stroke-width="1.5"/>
+      <g fill="#90A4AE" opacity=".85">
+        <rect x="32" y="229" width="9" height="11" rx="2"/>
+        <rect x="32" y="509" width="9" height="11" rx="2"/>
+      </g>
+      <rect x="996" y="108" width="124" height="552" fill="#EDE0C4" stroke="#BCAAA4" stroke-width="1.5"/>
+      <g fill="#90A4AE" opacity=".85">
+        <rect x="1111" y="325" width="9" height="11" rx="2"/>
+        <rect x="1111" y="417" width="9" height="11" rx="2"/>
+        <rect x="1111" y="509" width="9" height="11" rx="2"/>
+        <rect x="1111" y="601" width="9" height="11" rx="2"/>
       </g>
 
-      <!-- SUB-CORRIDOR -->
-      <rect x="30" y="188" width="1090" height="90" fill="#ECEFF1" stroke="#CFD8DC" stroke-width="1" opacity=".8"/>
+      <!-- Escaleras Generales — hueco entre izquierda y ascensor (igual que piso 1) -->
+      <g id="p2-loc-escal-gen" class="clickable" onclick="navigateTo('escaleras_generales')">
+        <rect class="rf" x="90" y="192" width="116" height="80" rx="5" fill="#BBDEFB" filter="url(#sh2)"/>
+        <text class="rl" x="148" y="218" text-anchor="middle" font-size="20" fill="#0D47A1">🪜</text>
+        <text class="rl" x="148" y="237" text-anchor="middle" font-size="8.5" fill="#0D47A1" font-weight="700">ESCALERAS GENERALES</text>
+        <text class="rl" x="148" y="251" text-anchor="middle" font-size="7.5" fill="#1565C0">↓ 1° · ↑ 3° · Todos los pisos</text>
+        <text class="rl" x="148" y="264" text-anchor="middle" font-size="7" fill="#42A5F5">Todos los pisos</text>
+      </g>
       <g id="p2-loc-ascensor" class="clickable" onclick="navigateTo('ascensor')">
         <rect class="rf" x="206" y="192" width="84" height="80" rx="5" fill="#B3E5FC" filter="url(#sh2)"/>
         <text class="rl" x="248" y="222" text-anchor="middle" font-size="20" fill="#01579B">🛗</text>
@@ -550,100 +564,75 @@
         <text class="rl" x="428" y="268" text-anchor="middle" font-size="8" fill="#42A5F5">🚻</text>
       </g>
       <g id="p2-loc-escal-cap" class="clickable" onclick="navigateTo('escaleras_capilla')">
-        <rect class="rf" x="988" y="192" width="130" height="80" rx="5" fill="#BBDEFB" filter="url(#sh2)"/>
-        <text class="rl" x="1053" y="218" text-anchor="middle" font-size="18" fill="#0D47A1">🪜</text>
-        <text class="rl" x="1053" y="237" text-anchor="middle" font-size="8.5" fill="#0D47A1" font-weight="700">ESCALERAS</text>
-        <text class="rl" x="1053" y="251" text-anchor="middle" font-size="8" fill="#0D47A1">↑ 3° / ↓ 1°</text>
-        <text class="rl" x="1053" y="264" text-anchor="middle" font-size="7" fill="#1565C0">Lado Capilla</text>
+        <rect class="rf" x="856" y="192" width="126" height="80" rx="5" fill="#BBDEFB" filter="url(#sh2)"/>
+        <text class="rl" x="919" y="218" text-anchor="middle" font-size="18" fill="#0D47A1">🪜</text>
+        <text class="rl" x="919" y="237" text-anchor="middle" font-size="8.5" fill="#0D47A1" font-weight="700">ESCALERAS</text>
+        <text class="rl" x="919" y="251" text-anchor="middle" font-size="8" fill="#0D47A1">↑ 3° / ↓ 1°</text>
+        <text class="rl" x="919" y="264" text-anchor="middle" font-size="7" fill="#1565C0">Lado Capilla</text>
       </g>
 
       <!-- CENTRAL AREA -->
       <rect x="30" y="284" width="1090" height="376" fill="#EEE8D5" opacity=".55"/>
-      <!-- Extra corridor left: 210, 211, 212 (mismo tamaño que columna derecha: 124×84) -->
+      <!-- Salon 210 — extremo izquierdo superior, paralelo al 209 -->
       <g id="p2-loc-210" class="clickable" onclick="navigateTo('salon_210')">
-        <rect class="rf" x="32" y="288" width="124" height="84" rx="5" fill="#C8E6C9" filter="url(#sh2)"/>
-        <text class="rl" x="94" y="322" text-anchor="middle" font-size="22" fill="#1B5E20" font-weight="800">210</text>
-        <text class="rl" x="94" y="342" text-anchor="middle" font-size="8.5" fill="#2E7D32">Salón de clases</text>
-        <text class="rl" x="94" y="362" text-anchor="middle" font-size="8" fill="#388E3C">🏫</text>
+        <rect class="rf" x="-96" y="22" width="124" height="86" rx="5" fill="#C8E6C9" filter="url(#sh2)"/>
+        <text class="rl" x="-34" y="54" text-anchor="middle" font-size="22" fill="#1B5E20" font-weight="800">210</text>
+        <text class="rl" x="-34" y="73" text-anchor="middle" font-size="8.5" fill="#2E7D32">Salón de clases</text>
+        <text class="rl" x="-34" y="101" text-anchor="middle" font-size="8" fill="#388E3C">🏫</text>
       </g>
+      <!-- Salones izquierda 211-212 fuera del corredor -->
       <g id="p2-loc-211" class="clickable" onclick="navigateTo('salon_211')">
-        <rect class="rf" x="32" y="380" width="124" height="84" rx="5" fill="#C8E6C9" filter="url(#sh2)"/>
-        <text class="rl" x="94" y="414" text-anchor="middle" font-size="22" fill="#1B5E20" font-weight="800">211</text>
-        <text class="rl" x="94" y="434" text-anchor="middle" font-size="8.5" fill="#2E7D32">Salón de clases</text>
-        <text class="rl" x="94" y="454" text-anchor="middle" font-size="8" fill="#388E3C">🏫</text>
+        <rect class="rf" x="-96" y="192" width="124" height="80" rx="5" fill="#C8E6C9" filter="url(#sh2)"/>
+        <text class="rl" x="-34" y="220" text-anchor="middle" font-size="22" fill="#1B5E20" font-weight="800">211</text>
+        <text class="rl" x="-34" y="240" text-anchor="middle" font-size="8.5" fill="#2E7D32">Salón de clases</text>
+        <text class="rl" x="-34" y="258" text-anchor="middle" font-size="8" fill="#388E3C">🏫</text>
       </g>
       <g id="p2-loc-212" class="clickable" onclick="navigateTo('salon_212')">
-        <rect class="rf" x="32" y="472" width="124" height="84" rx="5" fill="#C8E6C9" filter="url(#sh2)"/>
-        <text class="rl" x="94" y="506" text-anchor="middle" font-size="22" fill="#1B5E20" font-weight="800">212</text>
-        <text class="rl" x="94" y="526" text-anchor="middle" font-size="8.5" fill="#2E7D32">Salón de clases</text>
-        <text class="rl" x="94" y="546" text-anchor="middle" font-size="8" fill="#388E3C">🏫</text>
+        <rect class="rf" x="-96" y="472" width="124" height="84" rx="5" fill="#C8E6C9" filter="url(#sh2)"/>
+        <text class="rl" x="-34" y="506" text-anchor="middle" font-size="22" fill="#1B5E20" font-weight="800">212</text>
+        <text class="rl" x="-34" y="526" text-anchor="middle" font-size="8.5" fill="#2E7D32">Salón de clases</text>
+        <text class="rl" x="-34" y="546" text-anchor="middle" font-size="8" fill="#388E3C">🏫</text>
       </g>
       <!-- Área común central -->
       <rect x="216" y="284" width="720" height="376" rx="6" fill="#ECEFF1" stroke="#CFD8DC" stroke-width="1" opacity=".7"/>
-      <!-- Escaleras Generales (área central — misma posición que piso 1) -->
-      <g id="p2-loc-escal-gen" class="clickable" onclick="navigateTo('escaleras_generales')">
-        <rect class="rf" x="216" y="304" width="200" height="66" rx="5" fill="#BBDEFB" filter="url(#sh2)"/>
-        <text class="rl" x="256" y="340" text-anchor="middle" font-size="24" fill="#0D47A1">🪜</text>
-        <text class="rl" x="346" y="327" text-anchor="middle" font-size="9" fill="#0D47A1" font-weight="700">ESCALERAS GENERALES</text>
-        <text class="rl" x="346" y="342" text-anchor="middle" font-size="8" fill="#1565C0">↓ 1° · ↑ 3° · Todos los pisos</text>
-        <text class="rl" x="346" y="357" text-anchor="middle" font-size="7" fill="#42A5F5">Acceso principal al piso</text>
-      </g>
-      <text x="576" y="460" text-anchor="middle" font-size="14" fill="#90A4AE" font-weight="600" letter-spacing="2">CORREDOR / ÁREA COMÚN</text>
+      <text x="576" y="460" text-anchor="middle" font-size="14" fill="#90A4AE" font-weight="600" letter-spacing="2">VACÍO</text>
       <text x="576" y="482" text-anchor="middle" font-size="10" fill="#B0BEC5">Segundo Piso</text>
-      <!-- Pasillo vertical izquierdo — 60px separado de salones 210-212 -->
-      <rect x="156" y="284" width="60" height="376" fill="#EDE0C4" stroke="#BCAAA4" stroke-width="1.5"/>
-      <g fill="#90A4AE" opacity=".85">
-        <rect x="182" y="310" width="9" height="11" rx="2"/>
-        <rect x="182" y="398" width="9" height="11" rx="2"/>
-        <rect x="182" y="486" width="9" height="11" rx="2"/>
-        <rect x="182" y="574" width="9" height="11" rx="2"/>
-      </g>
-      <!-- East ala: 204, 203, 202, 201 -->
-      <rect x="936" y="284" width="184" height="376" fill="#F5ECD7" stroke="#BCAAA4" stroke-width="1.2"/>
-      <!-- Pasillo vertical derecho — 60px separado de salones 201-204 -->
-      <rect x="936" y="284" width="60" height="376" fill="#EDE0C4" stroke="#BCAAA4" stroke-width="1.5"/>
-      <g fill="#90A4AE" opacity=".85">
-        <rect x="957" y="310" width="9" height="11" rx="2"/>
-        <rect x="957" y="398" width="9" height="11" rx="2"/>
-        <rect x="957" y="486" width="9" height="11" rx="2"/>
-        <rect x="957" y="574" width="9" height="11" rx="2"/>
-      </g>
       <g id="p2-loc-204" class="clickable" onclick="navigateTo('salon_204')">
-        <rect class="rf" x="996" y="288" width="124" height="84" rx="5" fill="#C8E6C9" filter="url(#sh2)"/>
-        <text class="rl" x="1058" y="322" text-anchor="middle" font-size="22" fill="#1B5E20" font-weight="800">204</text>
-        <text class="rl" x="1058" y="342" text-anchor="middle" font-size="8.5" fill="#2E7D32">Salón de clases</text>
-        <text class="rl" x="1058" y="362" text-anchor="middle" font-size="8" fill="#388E3C">🏫</text>
+        <rect class="rf" x="1120" y="22" width="124" height="86" rx="5" fill="#C8E6C9" filter="url(#sh2)"/>
+        <text class="rl" x="1182" y="54" text-anchor="middle" font-size="22" fill="#1B5E20" font-weight="800">204</text>
+        <text class="rl" x="1182" y="73" text-anchor="middle" font-size="8.5" fill="#2E7D32">Salón de clases</text>
+        <text class="rl" x="1182" y="101" text-anchor="middle" font-size="8" fill="#388E3C">🏫</text>
       </g>
       <g id="p2-loc-203" class="clickable" onclick="navigateTo('salon_203')">
-        <rect class="rf" x="996" y="380" width="124" height="84" rx="5" fill="#C8E6C9" filter="url(#sh2)"/>
-        <text class="rl" x="1058" y="414" text-anchor="middle" font-size="22" fill="#1B5E20" font-weight="800">203</text>
-        <text class="rl" x="1058" y="434" text-anchor="middle" font-size="8.5" fill="#2E7D32">Salón de clases</text>
-        <text class="rl" x="1058" y="454" text-anchor="middle" font-size="8" fill="#388E3C">🏫</text>
+        <rect class="rf" x="1120" y="288" width="124" height="84" rx="5" fill="#C8E6C9" filter="url(#sh2)"/>
+        <text class="rl" x="1182" y="322" text-anchor="middle" font-size="22" fill="#1B5E20" font-weight="800">203</text>
+        <text class="rl" x="1182" y="342" text-anchor="middle" font-size="8.5" fill="#2E7D32">Salón de clases</text>
+        <text class="rl" x="1182" y="362" text-anchor="middle" font-size="8" fill="#388E3C">🏫</text>
       </g>
       <g id="p2-loc-202" class="clickable" onclick="navigateTo('salon_202')">
-        <rect class="rf" x="996" y="472" width="124" height="84" rx="5" fill="#C8E6C9" filter="url(#sh2)"/>
-        <text class="rl" x="1058" y="506" text-anchor="middle" font-size="22" fill="#1B5E20" font-weight="800">202</text>
-        <text class="rl" x="1058" y="526" text-anchor="middle" font-size="8.5" fill="#2E7D32">Salón de clases</text>
-        <text class="rl" x="1058" y="546" text-anchor="middle" font-size="8" fill="#388E3C">🏫</text>
+        <rect class="rf" x="1120" y="472" width="124" height="84" rx="5" fill="#C8E6C9" filter="url(#sh2)"/>
+        <text class="rl" x="1182" y="506" text-anchor="middle" font-size="22" fill="#1B5E20" font-weight="800">202</text>
+        <text class="rl" x="1182" y="526" text-anchor="middle" font-size="8.5" fill="#2E7D32">Salón de clases</text>
+        <text class="rl" x="1182" y="546" text-anchor="middle" font-size="8" fill="#388E3C">🏫</text>
       </g>
       <g id="p2-loc-201" class="clickable" onclick="navigateTo('salon_201')">
-        <rect class="rf" x="996" y="564" width="124" height="84" rx="5" fill="#C8E6C9" filter="url(#sh2)"/>
-        <text class="rl" x="1058" y="598" text-anchor="middle" font-size="22" fill="#1B5E20" font-weight="800">201</text>
-        <text class="rl" x="1058" y="618" text-anchor="middle" font-size="8.5" fill="#2E7D32">Salón de clases</text>
-        <text class="rl" x="1058" y="638" text-anchor="middle" font-size="8" fill="#388E3C">🏫</text>
+        <rect class="rf" x="1120" y="564" width="124" height="84" rx="5" fill="#C8E6C9" filter="url(#sh2)"/>
+        <text class="rl" x="1182" y="598" text-anchor="middle" font-size="22" fill="#1B5E20" font-weight="800">201</text>
+        <text class="rl" x="1182" y="618" text-anchor="middle" font-size="8.5" fill="#2E7D32">Salón de clases</text>
+        <text class="rl" x="1182" y="638" text-anchor="middle" font-size="8" fill="#388E3C">🏫</text>
       </g>
       <g id="route-layer-2"></g>
     </svg>
 
     <!-- ═══════════════ TERCER PISO ═══════════════ -->
-    <svg id="floor-3-map" class="floor-svg" viewBox="0 0 1150 680" xmlns="http://www.w3.org/2000/svg">
+    <svg id="floor-3-map" class="floor-svg" viewBox="-130 0 1410 680" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <pattern id="dots3" width="18" height="18" patternUnits="userSpaceOnUse"><circle cx="9" cy="9" r=".85" fill="#B0BEC5"/></pattern>
         <filter id="sh3" x="-10%" y="-10%" width="120%" height="120%"><feDropShadow dx="1" dy="2" stdDeviation="2.5" flood-opacity=".15"/></filter>
       </defs>
-      <rect width="1150" height="680" fill="#E8EDF0"/>
-      <rect width="1150" height="680" fill="url(#dots3)"/>
-      <rect x="0" y="0" width="1150" height="22" fill="#FFF3E0" opacity=".9"/>
+      <rect x="-130" width="1410" height="680" fill="#E8EDF0"/>
+      <rect x="-130" width="1410" height="680" fill="url(#dots3)"/>
+      <rect x="-130" y="0" width="1410" height="22" fill="#FFF3E0" opacity=".9"/>
       <text x="575" y="15" text-anchor="middle" font-size="8.5" fill="#E65100" font-weight="600" letter-spacing="1">TERCER PISO — ACCESO POR ESCALERAS O ASCENSOR</text>
 
       <!-- TOP ROW: 309, Escal.Generales, 308, 307, 306, 305 -->
@@ -654,10 +643,10 @@
         <text class="rl" x="146" y="101" text-anchor="middle" font-size="8" fill="#388E3C">🏫</text>
       </g>
       <g id="p3-loc-308" class="clickable" onclick="navigateTo('salon_308')">
-        <rect class="rf" x="476" y="22" width="106" height="86" rx="5" fill="#C8E6C9" filter="url(#sh3)"/>
-        <text class="rl" x="529" y="54" text-anchor="middle" font-size="22" fill="#1B5E20" font-weight="800">308</text>
-        <text class="rl" x="529" y="73" text-anchor="middle" font-size="8.5" fill="#2E7D32">Salón de clases</text>
-        <text class="rl" x="529" y="101" text-anchor="middle" font-size="8" fill="#388E3C">🏫</text>
+        <rect class="rf" x="200" y="22" width="106" height="86" rx="5" fill="#C8E6C9" filter="url(#sh3)"/>
+        <text class="rl" x="253" y="54" text-anchor="middle" font-size="22" fill="#1B5E20" font-weight="800">308</text>
+        <text class="rl" x="253" y="73" text-anchor="middle" font-size="8.5" fill="#2E7D32">Salón de clases</text>
+        <text class="rl" x="253" y="101" text-anchor="middle" font-size="8" fill="#388E3C">🏫</text>
       </g>
       <g id="p3-loc-307" class="clickable" onclick="navigateTo('salon_307')">
         <rect class="rf" x="590" y="22" width="106" height="86" rx="5" fill="#C8E6C9" filter="url(#sh3)"/>
@@ -672,10 +661,10 @@
         <text class="rl" x="757" y="101" text-anchor="middle" font-size="8" fill="#388E3C">🏫</text>
       </g>
       <g id="p3-loc-305" class="clickable" onclick="navigateTo('salon_305')">
-        <rect class="rf" x="818" y="22" width="106" height="86" rx="5" fill="#C8E6C9" filter="url(#sh3)"/>
-        <text class="rl" x="871" y="54" text-anchor="middle" font-size="22" fill="#1B5E20" font-weight="800">305</text>
-        <text class="rl" x="871" y="73" text-anchor="middle" font-size="8.5" fill="#2E7D32">Salón de clases</text>
-        <text class="rl" x="871" y="101" text-anchor="middle" font-size="8" fill="#388E3C">🏫</text>
+        <rect class="rf" x="876" y="22" width="106" height="86" rx="5" fill="#C8E6C9" filter="url(#sh3)"/>
+        <text class="rl" x="929" y="54" text-anchor="middle" font-size="22" fill="#1B5E20" font-weight="800">305</text>
+        <text class="rl" x="929" y="73" text-anchor="middle" font-size="8.5" fill="#2E7D32">Salón de clases</text>
+        <text class="rl" x="929" y="101" text-anchor="middle" font-size="8" fill="#388E3C">🏫</text>
       </g>
 
       <!-- PASILLO PRINCIPAL -->
@@ -685,17 +674,32 @@
         <rect x="340" y="109" width="9" height="11" rx="2"/><rect x="455" y="109" width="9" height="11" rx="2"/>
         <rect x="560" y="109" width="9" height="11" rx="2"/><rect x="668" y="109" width="9" height="11" rx="2"/>
         <rect x="778" y="109" width="9" height="11" rx="2"/><rect x="888" y="109" width="9" height="11" rx="2"/>
+        <rect x="998" y="109" width="9" height="11" rx="2"/>
       </g>
-      <text x="520" y="153" text-anchor="middle" font-size="12" fill="#8D6E63" font-weight="700" letter-spacing="1.8">PASILLO PRINCIPAL</text>
-      <g id="p3-loc-capilla" class="clickable" onclick="navigateTo('capilla')">
-        <rect class="rf" x="998" y="108" width="122" height="80" rx="0" fill="#FFF8E1" stroke="#FFD54F" stroke-width="2"/>
-        <text class="rl" x="1059" y="138" text-anchor="middle" font-size="10.5" fill="#4E342E" font-weight="700">⛪ CAPILLA</text>
-        <text class="rl" x="1059" y="155" text-anchor="middle" font-size="8.5" fill="#6D4C41">Paz y Bien</text>
-        <text class="rl" x="1059" y="170" text-anchor="middle" font-size="7.5" fill="#8D6E63">Franciscana ☩</text>
+      <text x="575" y="153" text-anchor="middle" font-size="12" fill="#8D6E63" font-weight="700" letter-spacing="1.8">PASILLO PRINCIPAL</text>
+      <!-- Pasillos verticales — dibujados primero para quedar detrás de todo -->
+      <rect x="32" y="108" width="58" height="552" fill="#EDE0C4" stroke="#BCAAA4" stroke-width="1.5"/>
+      <g fill="#90A4AE" opacity=".85">
+        <rect x="32" y="229" width="9" height="11" rx="2"/>
+        <rect x="32" y="317" width="9" height="11" rx="2"/>
+        <rect x="32" y="509" width="9" height="11" rx="2"/>
+      </g>
+      <rect x="996" y="108" width="124" height="552" fill="#EDE0C4" stroke="#BCAAA4" stroke-width="1.5"/>
+      <g fill="#90A4AE" opacity=".85">
+        <rect x="1111" y="325" width="9" height="11" rx="2"/>
+        <rect x="1111" y="417" width="9" height="11" rx="2"/>
+        <rect x="1111" y="509" width="9" height="11" rx="2"/>
+        <rect x="1111" y="601" width="9" height="11" rx="2"/>
       </g>
 
-      <!-- SUB-CORRIDOR -->
-      <rect x="30" y="188" width="1090" height="90" fill="#ECEFF1" stroke="#CFD8DC" stroke-width="1" opacity=".8"/>
+      <!-- Escaleras Generales — hueco entre izquierda y ascensor (igual que piso 1) -->
+      <g id="p3-loc-escal-gen" class="clickable" onclick="navigateTo('escaleras_generales')">
+        <rect class="rf" x="90" y="192" width="116" height="80" rx="5" fill="#BBDEFB" filter="url(#sh3)"/>
+        <text class="rl" x="148" y="218" text-anchor="middle" font-size="20" fill="#0D47A1">🪜</text>
+        <text class="rl" x="148" y="237" text-anchor="middle" font-size="8.5" fill="#0D47A1" font-weight="700">ESCALERAS GENERALES</text>
+        <text class="rl" x="148" y="251" text-anchor="middle" font-size="7.5" fill="#1565C0">↓ 2° · ↓ 1° · Todos los pisos</text>
+        <text class="rl" x="148" y="264" text-anchor="middle" font-size="7" fill="#42A5F5">Todos los pisos</text>
+      </g>
       <g id="p3-loc-ascensor" class="clickable" onclick="navigateTo('ascensor')">
         <rect class="rf" x="206" y="192" width="84" height="80" rx="5" fill="#B3E5FC" filter="url(#sh3)"/>
         <text class="rl" x="248" y="222" text-anchor="middle" font-size="20" fill="#01579B">🛗</text>
@@ -716,93 +720,68 @@
         <text class="rl" x="428" y="268" text-anchor="middle" font-size="8" fill="#42A5F5">🚻</text>
       </g>
       <g id="p3-loc-escal-cap" class="clickable" onclick="navigateTo('escaleras_capilla')">
-        <rect class="rf" x="988" y="192" width="130" height="80" rx="5" fill="#BBDEFB" filter="url(#sh3)"/>
-        <text class="rl" x="1053" y="218" text-anchor="middle" font-size="18" fill="#0D47A1">🪜</text>
-        <text class="rl" x="1053" y="237" text-anchor="middle" font-size="8.5" fill="#0D47A1" font-weight="700">ESCALERAS</text>
-        <text class="rl" x="1053" y="251" text-anchor="middle" font-size="8" fill="#0D47A1">↓ 2° / ↓ 1°</text>
-        <text class="rl" x="1053" y="264" text-anchor="middle" font-size="7" fill="#1565C0">Lado Capilla</text>
+        <rect class="rf" x="856" y="192" width="126" height="80" rx="5" fill="#BBDEFB" filter="url(#sh3)"/>
+        <text class="rl" x="919" y="218" text-anchor="middle" font-size="18" fill="#0D47A1">🪜</text>
+        <text class="rl" x="919" y="237" text-anchor="middle" font-size="8.5" fill="#0D47A1" font-weight="700">ESCALERAS</text>
+        <text class="rl" x="919" y="251" text-anchor="middle" font-size="8" fill="#0D47A1">↓ 2° / ↓ 1°</text>
+        <text class="rl" x="919" y="264" text-anchor="middle" font-size="7" fill="#1565C0">Lado Capilla</text>
       </g>
 
       <!-- CENTRAL AREA -->
       <rect x="30" y="284" width="1090" height="376" fill="#EEE8D5" opacity=".55"/>
-      <!-- Extra corridor left: 310, 311, 312, 313 (mismo tamaño que columna derecha: 124×84) -->
+      <!-- Salon 310 — extremo izquierdo superior, paralelo al 309 -->
       <g id="p3-loc-310" class="clickable" onclick="navigateTo('salon_310')">
-        <rect class="rf" x="32" y="288" width="124" height="84" rx="5" fill="#C8E6C9" filter="url(#sh3)"/>
-        <text class="rl" x="94" y="322" text-anchor="middle" font-size="22" fill="#1B5E20" font-weight="800">310</text>
-        <text class="rl" x="94" y="342" text-anchor="middle" font-size="8.5" fill="#2E7D32">Salón de clases</text>
-        <text class="rl" x="94" y="362" text-anchor="middle" font-size="8" fill="#388E3C">🏫</text>
+        <rect class="rf" x="-96" y="22" width="124" height="86" rx="5" fill="#C8E6C9" filter="url(#sh3)"/>
+        <text class="rl" x="-34" y="54" text-anchor="middle" font-size="22" fill="#1B5E20" font-weight="800">310</text>
+        <text class="rl" x="-34" y="73" text-anchor="middle" font-size="8.5" fill="#2E7D32">Salón de clases</text>
+        <text class="rl" x="-34" y="101" text-anchor="middle" font-size="8" fill="#388E3C">🏫</text>
       </g>
+      <!-- Salones izquierda 311-313 fuera del corredor -->
       <g id="p3-loc-311" class="clickable" onclick="navigateTo('salon_311')">
-        <rect class="rf" x="32" y="380" width="124" height="84" rx="5" fill="#C8E6C9" filter="url(#sh3)"/>
-        <text class="rl" x="94" y="414" text-anchor="middle" font-size="22" fill="#1B5E20" font-weight="800">311</text>
-        <text class="rl" x="94" y="434" text-anchor="middle" font-size="8.5" fill="#2E7D32">Salón de clases</text>
-        <text class="rl" x="94" y="454" text-anchor="middle" font-size="8" fill="#388E3C">🏫</text>
+        <rect class="rf" x="-96" y="192" width="124" height="80" rx="5" fill="#C8E6C9" filter="url(#sh3)"/>
+        <text class="rl" x="-34" y="220" text-anchor="middle" font-size="22" fill="#1B5E20" font-weight="800">311</text>
+        <text class="rl" x="-34" y="240" text-anchor="middle" font-size="8.5" fill="#2E7D32">Salón de clases</text>
+        <text class="rl" x="-34" y="258" text-anchor="middle" font-size="8" fill="#388E3C">🏫</text>
       </g>
       <g id="p3-loc-312" class="clickable" onclick="navigateTo('salon_312')">
-        <rect class="rf" x="32" y="472" width="124" height="84" rx="5" fill="#C8E6C9" filter="url(#sh3)"/>
-        <text class="rl" x="94" y="506" text-anchor="middle" font-size="22" fill="#1B5E20" font-weight="800">312</text>
-        <text class="rl" x="94" y="526" text-anchor="middle" font-size="8.5" fill="#2E7D32">Salón de clases</text>
-        <text class="rl" x="94" y="546" text-anchor="middle" font-size="8" fill="#388E3C">🏫</text>
+        <rect class="rf" x="-96" y="280" width="124" height="84" rx="5" fill="#C8E6C9" filter="url(#sh3)"/>
+        <text class="rl" x="-34" y="314" text-anchor="middle" font-size="22" fill="#1B5E20" font-weight="800">312</text>
+        <text class="rl" x="-34" y="334" text-anchor="middle" font-size="8.5" fill="#2E7D32">Salón de clases</text>
+        <text class="rl" x="-34" y="354" text-anchor="middle" font-size="8" fill="#388E3C">🏫</text>
       </g>
       <g id="p3-loc-313" class="clickable" onclick="navigateTo('salon_313')">
-        <rect class="rf" x="32" y="564" width="124" height="84" rx="5" fill="#C8E6C9" filter="url(#sh3)"/>
-        <text class="rl" x="94" y="598" text-anchor="middle" font-size="22" fill="#1B5E20" font-weight="800">313</text>
-        <text class="rl" x="94" y="618" text-anchor="middle" font-size="8.5" fill="#2E7D32">Salón de clases</text>
-        <text class="rl" x="94" y="638" text-anchor="middle" font-size="8" fill="#388E3C">🏫</text>
+        <rect class="rf" x="-96" y="472" width="124" height="84" rx="5" fill="#C8E6C9" filter="url(#sh3)"/>
+        <text class="rl" x="-34" y="506" text-anchor="middle" font-size="22" fill="#1B5E20" font-weight="800">313</text>
+        <text class="rl" x="-34" y="526" text-anchor="middle" font-size="8.5" fill="#2E7D32">Salón de clases</text>
+        <text class="rl" x="-34" y="546" text-anchor="middle" font-size="8" fill="#388E3C">🏫</text>
       </g>
       <!-- Área común central -->
       <rect x="216" y="284" width="720" height="376" rx="6" fill="#ECEFF1" stroke="#CFD8DC" stroke-width="1" opacity=".7"/>
-      <!-- Escaleras Generales (área central — misma posición que piso 1) -->
-      <g id="p3-loc-escal-gen" class="clickable" onclick="navigateTo('escaleras_generales')">
-        <rect class="rf" x="216" y="304" width="200" height="66" rx="5" fill="#BBDEFB" filter="url(#sh3)"/>
-        <text class="rl" x="256" y="340" text-anchor="middle" font-size="24" fill="#0D47A1">🪜</text>
-        <text class="rl" x="346" y="327" text-anchor="middle" font-size="9" fill="#0D47A1" font-weight="700">ESCALERAS GENERALES</text>
-        <text class="rl" x="346" y="342" text-anchor="middle" font-size="8" fill="#1565C0">↓ 2° / ↓ 1° · Todos los pisos</text>
-        <text class="rl" x="346" y="357" text-anchor="middle" font-size="7" fill="#42A5F5">Acceso principal al piso</text>
-      </g>
-      <text x="576" y="460" text-anchor="middle" font-size="14" fill="#90A4AE" font-weight="600" letter-spacing="2">CORREDOR / ÁREA COMÚN</text>
+      <text x="576" y="460" text-anchor="middle" font-size="14" fill="#90A4AE" font-weight="600" letter-spacing="2">VACÍO</text>
       <text x="576" y="482" text-anchor="middle" font-size="10" fill="#B0BEC5">Tercer Piso</text>
-      <!-- Pasillo vertical izquierdo — 60px separado de salones 310-313 -->
-      <rect x="156" y="284" width="60" height="376" fill="#EDE0C4" stroke="#BCAAA4" stroke-width="1.5"/>
-      <g fill="#90A4AE" opacity=".85">
-        <rect x="182" y="310" width="9" height="11" rx="2"/>
-        <rect x="182" y="398" width="9" height="11" rx="2"/>
-        <rect x="182" y="486" width="9" height="11" rx="2"/>
-        <rect x="182" y="574" width="9" height="11" rx="2"/>
-      </g>
-      <!-- East ala: 304, 303, 302, 301 -->
-      <rect x="936" y="284" width="184" height="376" fill="#F5ECD7" stroke="#BCAAA4" stroke-width="1.2"/>
-      <!-- Pasillo vertical derecho — 60px separado de salones 301-304 -->
-      <rect x="936" y="284" width="60" height="376" fill="#EDE0C4" stroke="#BCAAA4" stroke-width="1.5"/>
-      <g fill="#90A4AE" opacity=".85">
-        <rect x="957" y="310" width="9" height="11" rx="2"/>
-        <rect x="957" y="398" width="9" height="11" rx="2"/>
-        <rect x="957" y="486" width="9" height="11" rx="2"/>
-        <rect x="957" y="574" width="9" height="11" rx="2"/>
-      </g>
       <g id="p3-loc-304" class="clickable" onclick="navigateTo('salon_304')">
-        <rect class="rf" x="996" y="288" width="124" height="84" rx="5" fill="#C8E6C9" filter="url(#sh3)"/>
-        <text class="rl" x="1058" y="322" text-anchor="middle" font-size="22" fill="#1B5E20" font-weight="800">304</text>
-        <text class="rl" x="1058" y="342" text-anchor="middle" font-size="8.5" fill="#2E7D32">Salón de clases</text>
-        <text class="rl" x="1058" y="362" text-anchor="middle" font-size="8" fill="#388E3C">🏫</text>
+        <rect class="rf" x="1120" y="22" width="124" height="86" rx="5" fill="#C8E6C9" filter="url(#sh3)"/>
+        <text class="rl" x="1182" y="54" text-anchor="middle" font-size="22" fill="#1B5E20" font-weight="800">304</text>
+        <text class="rl" x="1182" y="73" text-anchor="middle" font-size="8.5" fill="#2E7D32">Salón de clases</text>
+        <text class="rl" x="1182" y="101" text-anchor="middle" font-size="8" fill="#388E3C">🏫</text>
       </g>
       <g id="p3-loc-303" class="clickable" onclick="navigateTo('salon_303')">
-        <rect class="rf" x="996" y="380" width="124" height="84" rx="5" fill="#C8E6C9" filter="url(#sh3)"/>
-        <text class="rl" x="1058" y="414" text-anchor="middle" font-size="22" fill="#1B5E20" font-weight="800">303</text>
-        <text class="rl" x="1058" y="434" text-anchor="middle" font-size="8.5" fill="#2E7D32">Salón de clases</text>
-        <text class="rl" x="1058" y="454" text-anchor="middle" font-size="8" fill="#388E3C">🏫</text>
+        <rect class="rf" x="1120" y="288" width="124" height="84" rx="5" fill="#C8E6C9" filter="url(#sh3)"/>
+        <text class="rl" x="1182" y="322" text-anchor="middle" font-size="22" fill="#1B5E20" font-weight="800">303</text>
+        <text class="rl" x="1182" y="342" text-anchor="middle" font-size="8.5" fill="#2E7D32">Salón de clases</text>
+        <text class="rl" x="1182" y="362" text-anchor="middle" font-size="8" fill="#388E3C">🏫</text>
       </g>
       <g id="p3-loc-302" class="clickable" onclick="navigateTo('salon_302')">
-        <rect class="rf" x="996" y="472" width="124" height="84" rx="5" fill="#C8E6C9" filter="url(#sh3)"/>
-        <text class="rl" x="1058" y="506" text-anchor="middle" font-size="22" fill="#1B5E20" font-weight="800">302</text>
-        <text class="rl" x="1058" y="526" text-anchor="middle" font-size="8.5" fill="#2E7D32">Salón de clases</text>
-        <text class="rl" x="1058" y="546" text-anchor="middle" font-size="8" fill="#388E3C">🏫</text>
+        <rect class="rf" x="1120" y="472" width="124" height="84" rx="5" fill="#C8E6C9" filter="url(#sh3)"/>
+        <text class="rl" x="1182" y="506" text-anchor="middle" font-size="22" fill="#1B5E20" font-weight="800">302</text>
+        <text class="rl" x="1182" y="526" text-anchor="middle" font-size="8.5" fill="#2E7D32">Salón de clases</text>
+        <text class="rl" x="1182" y="546" text-anchor="middle" font-size="8" fill="#388E3C">🏫</text>
       </g>
       <g id="p3-loc-301" class="clickable" onclick="navigateTo('salon_301')">
-        <rect class="rf" x="996" y="564" width="124" height="84" rx="5" fill="#C8E6C9" filter="url(#sh3)"/>
-        <text class="rl" x="1058" y="598" text-anchor="middle" font-size="22" fill="#1B5E20" font-weight="800">301</text>
-        <text class="rl" x="1058" y="618" text-anchor="middle" font-size="8.5" fill="#2E7D32">Salón de clases</text>
-        <text class="rl" x="1058" y="638" text-anchor="middle" font-size="8" fill="#388E3C">🏫</text>
+        <rect class="rf" x="1120" y="564" width="124" height="84" rx="5" fill="#C8E6C9" filter="url(#sh3)"/>
+        <text class="rl" x="1182" y="598" text-anchor="middle" font-size="22" fill="#1B5E20" font-weight="800">301</text>
+        <text class="rl" x="1182" y="618" text-anchor="middle" font-size="8.5" fill="#2E7D32">Salón de clases</text>
+        <text class="rl" x="1182" y="638" text-anchor="middle" font-size="8" fill="#388E3C">🏫</text>
       </g>
       <g id="route-layer-3"></g>
     </svg>
@@ -873,7 +852,7 @@ const G = {
   p_h5:         { x:757,  y:148, nb:{ p_h4:1.5, s106:1, p_h6:1.5 } },
   p_h6:         { x:871,  y:148, nb:{ p_h5:1.5, s105:1, p_h7:1.5 } },
   p_h7:         { x:962,  y:148, nb:{ p_h6:1.5, escal_arr:1.5, capilla:1.5, dona_pica_n:1.5 } },
-  capilla:      { x:1059, y:148, nb:{ p_h7:1.5, ala_top:2 } },
+  capilla:      { x:1181, y:148, nb:{ p_h7:1.5, ala_top:2 } },
 
   // Rooms above hallway
   s109:         { x:146,  y:65,  nb:{ p_h0:1.5 } },
@@ -884,9 +863,9 @@ const G = {
   s105:         { x:871,  y:65,  nb:{ p_h6:1 } },
 
   // Below-corridor strip (y≈232)
-  escal_arr:    { x:1053, y:232, nb:{ p_h7:1.5, ala_top:1 } },
-  dona_pica_n:  { x:919,  y:232, nb:{ p_h7:1.5, escal_arr:1 } },
-  enferm:       { x:61,   y:232, nb:{ entrada:1.5, zona_prof:2 } },
+  escal_arr:    { x:919,  y:232, nb:{ p_h7:1.5, ala_top:1 } },
+  dona_pica_n:  { x:793,  y:232, nb:{ p_h7:1.5, escal_arr:1 } },
+  enferm:       { x:61,   y:232, nb:{ entrada:1.5, zona_prof:2, escal_sot:1 } },
   asc:          { x:248,  y:232, nb:{ p_h1:1.5, bano_f:1 } },
   bano_f:       { x:337,  y:232, nb:{ asc:1, bano_m:1 } },
   bano_m:       { x:428,  y:232, nb:{ bano_f:1 } },
@@ -895,7 +874,7 @@ const G = {
   zona_prof:    { x:61,   y:472, nb:{ enferm:2 } },
 
   // Plazoleta — escaleras generales (norte)
-  escal_sot:    { x:196,  y:337, nb:{ p_h0:2, tienda:4 } },
+  escal_sot:    { x:148,  y:232, nb:{ p_h0:1, enferm:1, tienda:4 } },
 
   // Plazoleta — sur
   papel:        { x:123,  y:606, nb:{ tienda:1 } },
@@ -906,14 +885,14 @@ const G = {
   cancha:       { x:591,  y:475, nb:{ p_h4:4 } },
 
   // Ala capilla
-  ala_top:      { x:1054, y:330, nb:{ capilla:2, s104:0.5, ala2:1.5, play:2, escal_arr:1 } },
-  s104:         { x:1054, y:330, nb:{ ala_top:0.5 } },
-  ala2:         { x:1054, y:422, nb:{ ala_top:1.5, s103:0.5, ala3:1.5, play:1.5 } },
-  s103:         { x:1054, y:422, nb:{ ala2:0.5 } },
-  ala3:         { x:1054, y:514, nb:{ ala2:1.5, s102:0.5, ala4:1.5, play:1.5 } },
-  s102:         { x:1054, y:514, nb:{ ala3:0.5 } },
-  ala4:         { x:1054, y:606, nb:{ ala3:1.5, s101:0.5, play:2 } },
-  s101:         { x:1054, y:606, nb:{ ala4:0.5 } },
+  ala_top:      { x:1028, y:330, nb:{ s104:0.5, ala2:1.5, play:2, escal_arr:1 } },
+  s104:         { x:1182, y:330, nb:{ ala_top:0.5 } },
+  ala2:         { x:1028, y:422, nb:{ ala_top:1.5, s103:0.5, ala3:1.5, play:1.5 } },
+  s103:         { x:1182, y:422, nb:{ ala2:0.5 } },
+  ala3:         { x:1028, y:514, nb:{ ala2:1.5, s102:0.5, ala4:1.5, play:1.5 } },
+  s102:         { x:1182, y:514, nb:{ ala3:0.5 } },
+  ala4:         { x:1028, y:606, nb:{ ala3:1.5, s101:0.5, play:2 } },
+  s101:         { x:1182, y:606, nb:{ ala4:0.5 } },
 
   // Playground (entre cancha y ala este)
   play:         { x:933,  y:472, nb:{ ala_top:2, ala2:1.5, ala3:1.5, ala4:2 } },
@@ -968,7 +947,6 @@ const LOCS_2 = {
   salon_210: { name:'Salón 210', type:'classroom', svgId:'p2-loc-210', photo:'fotos/S210P2.JPG', terms:['210','salon 210'] },
   salon_211: { name:'Salón 211', type:'classroom', svgId:'p2-loc-211', photo:'fotos/S211P2.JPG', terms:['211','salon 211'] },
   salon_212: { name:'Salón 212', type:'classroom', svgId:'p2-loc-212', photo:'fotos/S212P2.JPG', terms:['212','salon 212'] },
-  capilla:             { name:'Capilla — Paz y Bien',     type:'special',  svgId:'p2-loc-capilla',   photo:'fotos/capilla-entrada.JPG', terms:['capilla','iglesia','paz y bien','franciscana'] },
   ascensor:            { name:'Ascensor',                 type:'elevator', svgId:'p2-loc-ascensor',  photo:'fotos/elevador.JPG',        terms:['ascensor','elevador','accesibilidad'] },
   banos_mujeres:       { name:'Baño Mujeres',             type:'bathroom', svgId:'p2-loc-banos-f',   photo:'fotos/bañoW.JPG',           terms:['baño','bano','mujeres','damas'] },
   banos_hombres:       { name:'Baño Hombres',             type:'bathroom', svgId:'p2-loc-banos-m',   photo:'fotos/bañosM.JPG',          terms:['baño','bano','hombres','caballeros'] },
@@ -976,42 +954,41 @@ const LOCS_2 = {
   escaleras_generales: { name:'Escaleras Generales',      type:'stairs',   svgId:'p2-loc-escal-gen', photo:'fotos/Escaleras-Este.JPG',  terms:['escaleras','generales','todos los pisos'] },
 };
 const G_2 = {
-  escal_gen: { x:316,  y:337, nb:{ p_h0:2 } },
-  p_h0:      { x:146,  y:148, nb:{ s209:1.5, p_h1:1.5, escal_gen:2, s210:2 } },
-  p_h1:      { x:240,  y:148, nb:{ p_h0:1.5, p_h2:1.5, asc:1.5 } },
+  escal_gen: { x:148,  y:232, nb:{ p_h0:1, asc:1 } },
+  p_h0:      { x:146,  y:148, nb:{ s209:1.5, p_h1:1.5, escal_gen:1, s210:2 } },
+  p_h1:      { x:240,  y:148, nb:{ p_h0:1.5, p_h2:1.5, asc:1.5, s208:1 } },
   p_h2:      { x:325,  y:148, nb:{ p_h1:1.5, p_h3:2 } },
-  p_h3:      { x:529,  y:148, nb:{ p_h2:2, s208:1, p_h4:1.5 } },
+  p_h3:      { x:529,  y:148, nb:{ p_h2:2, p_h4:1.5 } },
   p_h4:      { x:643,  y:148, nb:{ p_h3:1.5, s207:1, p_h5:1.5 } },
   p_h5:      { x:757,  y:148, nb:{ p_h4:1.5, s206:1, p_h6:1.5 } },
-  p_h6:      { x:871,  y:148, nb:{ p_h5:1.5, s205:1, p_h7:1.5 } },
-  p_h7:      { x:962,  y:148, nb:{ p_h6:1.5, escal_arr:1.5, capilla:1.5 } },
-  capilla:   { x:1059, y:148, nb:{ p_h7:1.5, ala_top:2 } },
+  p_h6:      { x:871,  y:148, nb:{ p_h5:1.5, p_h7:1.5 } },
+  p_h7:      { x:962,  y:148, nb:{ p_h6:1.5, escal_arr:1.5, s204:1.5, s205:1 } },
   s209:      { x:146,  y:65,  nb:{ p_h0:1.5 } },
-  s208:      { x:529,  y:65,  nb:{ p_h3:1 } },
+  s208:      { x:253,  y:65,  nb:{ p_h1:1 } },
   s207:      { x:643,  y:65,  nb:{ p_h4:1 } },
   s206:      { x:757,  y:65,  nb:{ p_h5:1 } },
-  s205:      { x:871,  y:65,  nb:{ p_h6:1 } },
-  escal_arr: { x:1053, y:232, nb:{ p_h7:1.5, ala_top:1 } },
-  asc:       { x:248,  y:232, nb:{ p_h1:1.5, bano_f:1 } },
+  s205:      { x:929,  y:65,  nb:{ p_h7:1 } },
+  escal_arr: { x:919,  y:232, nb:{ p_h7:1.5, ala_top:1 } },
+  asc:       { x:248,  y:232, nb:{ p_h1:1.5, bano_f:1, escal_gen:1 } },
   bano_f:    { x:337,  y:232, nb:{ asc:1, bano_m:1 } },
   bano_m:    { x:428,  y:232, nb:{ bano_f:1 } },
-  s210:      { x:94,   y:330, nb:{ p_h0:2, s211:1.2 } },
-  s211:      { x:94,   y:422, nb:{ s210:1.2, s212:1.2 } },
-  s212:      { x:94,   y:514, nb:{ s211:1.2 } },
-  ala_top:   { x:1058, y:330, nb:{ capilla:2, s204:0.5, ala2:1.5, escal_arr:1 } },
-  s204:      { x:1058, y:330, nb:{ ala_top:0.5 } },
-  ala2:      { x:1058, y:422, nb:{ ala_top:1.5, s203:0.5, ala3:1.5 } },
-  s203:      { x:1058, y:422, nb:{ ala2:0.5 } },
-  ala3:      { x:1058, y:514, nb:{ ala2:1.5, s202:0.5, ala4:1.5 } },
-  s202:      { x:1058, y:514, nb:{ ala3:0.5 } },
-  ala4:      { x:1058, y:606, nb:{ ala3:1.5, s201:0.5 } },
-  s201:      { x:1058, y:606, nb:{ ala4:0.5 } },
+  s210:      { x:61,   y:65,  nb:{ p_h0:1.5 } },
+  s211:      { x:-34,  y:232, nb:{ p_h0:2, s212:1.2 } },
+  s212:      { x:-34,  y:514, nb:{ s211:1.2 } },
+  ala_top:   { x:1028, y:330, nb:{ s203:0.5, ala2:1.5, escal_arr:1 } },
+  s204:      { x:1182, y:65,  nb:{ p_h7:1.5 } },
+  ala2:      { x:1028, y:422, nb:{ ala_top:1.5, ala3:1.5 } },
+  s203:      { x:1182, y:330, nb:{ ala_top:0.5 } },
+  ala3:      { x:1028, y:514, nb:{ ala2:1.5, s202:0.5, ala4:1.5 } },
+  s202:      { x:1182, y:514, nb:{ ala3:0.5 } },
+  ala4:      { x:1028, y:606, nb:{ ala3:1.5, s201:0.5 } },
+  s201:      { x:1182, y:606, nb:{ ala4:0.5 } },
 };
 const LOC_NODE_2 = {
   salon_201:'s201', salon_202:'s202', salon_203:'s203', salon_204:'s204',
   salon_205:'s205', salon_206:'s206', salon_207:'s207', salon_208:'s208', salon_209:'s209',
   salon_210:'s210', salon_211:'s211', salon_212:'s212',
-  capilla:'capilla', ascensor:'asc', banos_mujeres:'bano_f', banos_hombres:'bano_m',
+  ascensor:'asc', banos_mujeres:'bano_f', banos_hombres:'bano_m',
   escaleras_capilla:'escal_arr', escaleras_generales:'escal_gen',
 };
 
@@ -1032,7 +1009,6 @@ const LOCS_3 = {
   salon_311: { name:'Salón 311', type:'classroom', svgId:'p3-loc-311', photo:'fotos/P3-S311.JPG', terms:['311','salon 311'] },
   salon_312: { name:'Salón 312', type:'classroom', svgId:'p3-loc-312', photo:'fotos/P3-S312.JPG', terms:['312','salon 312'] },
   salon_313: { name:'Salón 313', type:'classroom', svgId:'p3-loc-313', photo:'fotos/P3-S313.JPG', terms:['313','salon 313'] },
-  capilla:             { name:'Capilla — Paz y Bien',  type:'special',  svgId:'p3-loc-capilla',   photo:'fotos/capilla-entrada.JPG',   terms:['capilla','iglesia','paz y bien','franciscana'] },
   ascensor:            { name:'Ascensor',               type:'elevator', svgId:'p3-loc-ascensor',  photo:'fotos/P3-elevador.JPG',       terms:['ascensor','elevador','accesibilidad'] },
   banos_mujeres:       { name:'Baño Mujeres',           type:'bathroom', svgId:'p3-loc-banos-f',   photo:'fotos/P3-baños-mujer.JPG',   terms:['baño','bano','mujeres','damas'] },
   banos_hombres:       { name:'Baño Hombres',           type:'bathroom', svgId:'p3-loc-banos-m',   photo:'fotos/P3-baños-hombre.JPG',  terms:['baño','bano','hombres','caballeros'] },
@@ -1040,43 +1016,42 @@ const LOCS_3 = {
   escaleras_generales: { name:'Escaleras Generales',    type:'stairs',   svgId:'p3-loc-escal-gen', photo:'fotos/P3-pasillo-1.JPG',   terms:['escaleras','generales','todos los pisos'] },
 };
 const G_3 = {
-  escal_gen: { x:316,  y:337, nb:{ p_h0:2 } },
-  p_h0:      { x:146,  y:148, nb:{ s309:1.5, p_h1:1.5, escal_gen:2, s310:2 } },
-  p_h1:      { x:240,  y:148, nb:{ p_h0:1.5, p_h2:1.5, asc:1.5 } },
+  escal_gen: { x:148,  y:232, nb:{ p_h0:1, asc:1 } },
+  p_h0:      { x:146,  y:148, nb:{ s309:1.5, p_h1:1.5, escal_gen:1, s310:2 } },
+  p_h1:      { x:240,  y:148, nb:{ p_h0:1.5, p_h2:1.5, asc:1.5, s308:1 } },
   p_h2:      { x:325,  y:148, nb:{ p_h1:1.5, p_h3:2 } },
-  p_h3:      { x:529,  y:148, nb:{ p_h2:2, s308:1, p_h4:1.5 } },
+  p_h3:      { x:529,  y:148, nb:{ p_h2:2, p_h4:1.5 } },
   p_h4:      { x:643,  y:148, nb:{ p_h3:1.5, s307:1, p_h5:1.5 } },
   p_h5:      { x:757,  y:148, nb:{ p_h4:1.5, s306:1, p_h6:1.5 } },
-  p_h6:      { x:871,  y:148, nb:{ p_h5:1.5, s305:1, p_h7:1.5 } },
-  p_h7:      { x:962,  y:148, nb:{ p_h6:1.5, escal_arr:1.5, capilla:1.5 } },
-  capilla:   { x:1059, y:148, nb:{ p_h7:1.5, ala_top:2 } },
+  p_h6:      { x:871,  y:148, nb:{ p_h5:1.5, p_h7:1.5 } },
+  p_h7:      { x:962,  y:148, nb:{ p_h6:1.5, escal_arr:1.5, s304:1.5, s305:1 } },
   s309:      { x:146,  y:65,  nb:{ p_h0:1.5 } },
-  s308:      { x:529,  y:65,  nb:{ p_h3:1 } },
+  s308:      { x:253,  y:65,  nb:{ p_h1:1 } },
   s307:      { x:643,  y:65,  nb:{ p_h4:1 } },
   s306:      { x:757,  y:65,  nb:{ p_h5:1 } },
-  s305:      { x:871,  y:65,  nb:{ p_h6:1 } },
-  escal_arr: { x:1053, y:232, nb:{ p_h7:1.5, ala_top:1 } },
-  asc:       { x:248,  y:232, nb:{ p_h1:1.5, bano_f:1 } },
+  s305:      { x:929,  y:65,  nb:{ p_h7:1 } },
+  escal_arr: { x:919,  y:232, nb:{ p_h7:1.5, ala_top:1 } },
+  asc:       { x:248,  y:232, nb:{ p_h1:1.5, bano_f:1, escal_gen:1 } },
   bano_f:    { x:337,  y:232, nb:{ asc:1, bano_m:1 } },
   bano_m:    { x:428,  y:232, nb:{ bano_f:1 } },
-  s310:      { x:94,   y:330, nb:{ p_h0:2, s311:1.2 } },
-  s311:      { x:94,   y:422, nb:{ s310:1.2, s312:1.2 } },
-  s312:      { x:94,   y:514, nb:{ s311:1.2, s313:1.2 } },
-  s313:      { x:94,   y:606, nb:{ s312:1.2 } },
-  ala_top:   { x:1058, y:330, nb:{ capilla:2, s304:0.5, ala2:1.5, escal_arr:1 } },
-  s304:      { x:1058, y:330, nb:{ ala_top:0.5 } },
-  ala2:      { x:1058, y:422, nb:{ ala_top:1.5, s303:0.5, ala3:1.5 } },
-  s303:      { x:1058, y:422, nb:{ ala2:0.5 } },
-  ala3:      { x:1058, y:514, nb:{ ala2:1.5, s302:0.5, ala4:1.5 } },
-  s302:      { x:1058, y:514, nb:{ ala3:0.5 } },
-  ala4:      { x:1058, y:606, nb:{ ala3:1.5, s301:0.5 } },
-  s301:      { x:1058, y:606, nb:{ ala4:0.5 } },
+  s310:      { x:61,   y:65,  nb:{ p_h0:1.5 } },
+  s311:      { x:-34,  y:232, nb:{ p_h0:2, s312:1.2 } },
+  s312:      { x:-34,  y:322, nb:{ s311:1.2, s313:1.2 } },
+  s313:      { x:-34,  y:514, nb:{ s312:1.2 } },
+  ala_top:   { x:1028, y:330, nb:{ s303:0.5, ala2:1.5, escal_arr:1 } },
+  s304:      { x:1182, y:65,  nb:{ p_h7:1.5 } },
+  ala2:      { x:1028, y:422, nb:{ ala_top:1.5, ala3:1.5 } },
+  s303:      { x:1182, y:330, nb:{ ala_top:0.5 } },
+  ala3:      { x:1028, y:514, nb:{ ala2:1.5, s302:0.5, ala4:1.5 } },
+  s302:      { x:1182, y:514, nb:{ ala3:0.5 } },
+  ala4:      { x:1028, y:606, nb:{ ala3:1.5, s301:0.5 } },
+  s301:      { x:1182, y:606, nb:{ ala4:0.5 } },
 };
 const LOC_NODE_3 = {
   salon_301:'s301', salon_302:'s302', salon_303:'s303', salon_304:'s304',
   salon_305:'s305', salon_306:'s306', salon_307:'s307', salon_308:'s308', salon_309:'s309',
   salon_310:'s310', salon_311:'s311', salon_312:'s312', salon_313:'s313',
-  capilla:'capilla', ascensor:'asc', banos_mujeres:'bano_f', banos_hombres:'bano_m',
+  ascensor:'asc', banos_mujeres:'bano_f', banos_hombres:'bano_m',
   escaleras_capilla:'escal_arr', escaleras_generales:'escal_gen',
 };
 
