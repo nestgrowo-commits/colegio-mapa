@@ -100,9 +100,9 @@
     .sbody { font-size: 12.5px; line-height: 1.5; color: #424242; padding-top: 4px; }
     .sbody strong { color: #111; display: block; margin-bottom: 2px; }
     .sdiv { height: 1px; background: #ECEFF1; margin: 2px 0 13px; }
-    .photo-wrap { flex-shrink: 0; border-top: 1px solid #ECEFF1; padding: 12px; display: none; }
+    .photo-wrap { flex-shrink: 0; border-top: 1px solid #ECEFF1; padding: 12px; display: none; background: #fff; }
     .photo-wrap h4 { font-size: 11px; color: #90A4AE; margin-bottom: 7px; text-transform: uppercase; letter-spacing: .4px; }
-    .photo-wrap img { width: 100%; border-radius: 8px; object-fit: cover; max-height: 150px; }
+    .photo-wrap img { display: block; width: 100%; height: 170px; border-radius: 8px; object-fit: cover; }
     @media (max-width: 768px) {
       .main { flex-direction: column-reverse; }
       .sidebar { width: 100%; max-height: 220px; border-left: none; border-top: 1px solid #CFD8DC; }
@@ -955,7 +955,7 @@ const LOCS_2 = {
 };
 const G_2 = {
   escal_gen: { x:148,  y:232, nb:{ p_h0:1, asc:1 } },
-  p_h0:      { x:146,  y:148, nb:{ s209:1.5, p_h1:1.5, escal_gen:1, s210:2 } },
+  p_h0:      { x:146,  y:148, nb:{ s209:1.5, p_h1:1.5, escal_gen:1, s210:2, s211:2 } },
   p_h1:      { x:240,  y:148, nb:{ p_h0:1.5, p_h2:1.5, asc:1.5, s208:1 } },
   p_h2:      { x:325,  y:148, nb:{ p_h1:1.5, p_h3:2 } },
   p_h3:      { x:529,  y:148, nb:{ p_h2:2, p_h4:1.5 } },
@@ -1017,7 +1017,7 @@ const LOCS_3 = {
 };
 const G_3 = {
   escal_gen: { x:148,  y:232, nb:{ p_h0:1, asc:1 } },
-  p_h0:      { x:146,  y:148, nb:{ s309:1.5, p_h1:1.5, escal_gen:1, s310:2 } },
+  p_h0:      { x:146,  y:148, nb:{ s309:1.5, p_h1:1.5, escal_gen:1, s310:2, s311:2 } },
   p_h1:      { x:240,  y:148, nb:{ p_h0:1.5, p_h2:1.5, asc:1.5, s308:1 } },
   p_h2:      { x:325,  y:148, nb:{ p_h1:1.5, p_h3:2 } },
   p_h3:      { x:529,  y:148, nb:{ p_h2:2, p_h4:1.5 } },
@@ -1208,12 +1208,12 @@ function navigateTo(locId) {
   if (loc.svgId) { const el = document.getElementById(loc.svgId); if (el) el.classList.add('highlight'); }
 
   const endNode = curLN[locId];
-  if (!endNode) return;
-  const path = findPath(startNode, endNode, Gx);
-  if (!path) return;
-  drawRoute(path);
+  const path = endNode ? findPath(startNode, endNode, Gx) : null;
+  if (path) drawRoute(path);
 
-  const steps = makeSteps(locId, path);
+  const steps = path ? makeSteps(locId, path) : [
+    { icon:'!', head:'Ruta no disponible', body:'Este destino esta seleccionado, pero falta conectar su ruta en el mapa.', type:'mid' }
+  ];
   const typeLabels = { classroom:'Salón de clases', bathroom:'Baños', special:'Especial', service:'Servicio', stairs:'Escaleras', elevator:'Ascensor', sport:'Deporte', play:'Zona recreativa', entrance:'Acceso principal', parking:'Parqueo' };
   document.getElementById('sb-body').innerHTML = `
     <div style="background:#E3F2FD;border-radius:8px;padding:10px 12px;margin-bottom:14px;">
@@ -1231,10 +1231,25 @@ function navigateTo(locId) {
   const pw = document.getElementById('photo-wrap');
   const pi = document.getElementById('photo-img');
   if (loc.photo) {
-    pw.style.display = 'block'; pi.src = loc.photo; pi.alt = loc.name;
+    pw.style.display = 'block';
+    pi.alt = loc.name;
     pi.onerror = () => { pw.style.display = 'none'; };
+    pi.onload = () => { pw.style.display = 'block'; };
+    pi.src = loc.photo;
   } else pw.style.display = 'none';
 }
+
+document.addEventListener('click', e => {
+  const el = e.target.closest('.clickable');
+  if (!el) return;
+  const floor = FLOORS[currentFloor];
+  const match = Object.entries(floor.LOCS).find(([, loc]) => loc.svgId === el.id);
+  if (!match) return;
+  e.preventDefault();
+  e.stopPropagation();
+  e.stopImmediatePropagation();
+  navigateTo(match[0]);
+}, true);
 
 function switchFloor(n) {
   currentFloor = n;
